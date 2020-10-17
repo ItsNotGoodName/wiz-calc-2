@@ -16,7 +16,34 @@ export type SpellActions =
   | {
       type: "update_character";
       value: CharacterType;
+    }
+  | {
+      type: "add_enchantment";
+    }
+  | {
+      type: "change_enchantment";
+      value: string;
+    }
+  | {
+      type: "add_increment";
+    }
+  | {
+      type: "change_increment";
+      pips: string;
+      base: string;
     };
+
+const dpsCalc = (newState: SpellType, index: number) => {
+  const enchantment = newState.enchantment ? newState.enchantment : 0;
+  const increment = newState.increment
+    ? newState.increment.base * newState.increment.pips
+    : 0;
+  newState.damages[index] = calculateDamage(
+    newState.character,
+    newState.bases[index] + enchantment + increment
+  );
+  return newState;
+};
 
 const spellReducer = (state: SpellType, action: SpellActions): SpellType => {
   switch (action.type) {
@@ -30,19 +57,13 @@ const spellReducer = (state: SpellType, action: SpellActions): SpellType => {
 
       if (!value) {
         newState.bases[action.index] = 0;
-        newState.damages[action.index] = calculateDamage(newState.character, 0);
+      } else if (value > MAX_SPELL_DAMAGE) {
+        newState.bases[action.index] = MAX_SPELL_DAMAGE;
       } else {
-        if (value > MAX_SPELL_DAMAGE) {
-          newState.bases[action.index] = MAX_SPELL_DAMAGE;
-        } else {
-          newState.bases[action.index] = value;
-        }
-
-        newState.damages[action.index] = calculateDamage(
-          newState.character,
-          newState.bases[action.index]
-        );
+        newState.bases[action.index] = value;
       }
+
+      dpsCalc(newState, action.index);
       return newState;
     }
     case "update_character": {
@@ -50,11 +71,35 @@ const spellReducer = (state: SpellType, action: SpellActions): SpellType => {
       newState.character = action.value;
 
       for (let i = 0; i < newState.bases.length; i++) {
-        newState.damages[i] = calculateDamage(
-          newState.character,
-          newState.bases[i]
-        );
+        dpsCalc(newState, i);
       }
+
+      return newState;
+    }
+    case "add_enchantment": {
+      const newState = { ...state };
+      newState.enchantment = 0;
+      return newState;
+    }
+    case "change_enchantment": {
+      const newState = { ...state };
+      newState.enchantment = parseInt(action.value);
+      return newState;
+    }
+    case "add_increment": {
+      const newState = { ...state };
+      newState.increment = {
+        base: 0,
+        pips: 0,
+      };
+      return newState;
+    }
+    case "change_increment": {
+      const newState = { ...state };
+      newState.increment = {
+        base: parseInt(action.base),
+        pips: parseInt(action.pips),
+      };
       return newState;
     }
     default: {
