@@ -1,6 +1,7 @@
 import { Box, Flex, Input, Stack, Text } from "@chakra-ui/core";
 import React from "react";
 import { CharacterType } from "../types";
+import { CardOptionMenu } from "./CardOptionMenu";
 import { LabelNumber } from "./LabelNumber";
 import { useSpell } from "./UseSpell";
 
@@ -18,21 +19,22 @@ export const SpellCard: React.FC<SpellCardProps> = ({ character }) => {
       borderRadius="10px"
       borderColor="#E2E8F0"
     >
-      <Box pt="5px" borderBottom="solid 2px" borderColor="#E2E8F0">
-        <Input
-          textAlign="center"
-          fontSize="20px"
-          w="95%"
-          mx="auto"
-          border="none"
-          spellCheck="false"
-          mb="5px"
-          value={spell.name}
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-            event.preventDefault();
-            dispatch({ type: "change_name", name: event.target.value });
-          }}
-        ></Input>
+      <Box p="5px" borderBottom="solid 2px" borderColor="#E2E8F0">
+        <Flex>
+          <Input
+            textAlign="center"
+            fontSize="20px"
+            mr="5px"
+            border="none"
+            spellCheck="false"
+            value={spell.name}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+              event.preventDefault();
+              dispatch({ type: "change_name", name: event.target.value });
+            }}
+          />
+          <CardOptionMenu />
+        </Flex>
       </Box>
       <Stack pb="10px" px="10px" borderBottom="solid 2px" borderColor="#E2E8F0">
         <LabelNumber label="Enchantment" />
