@@ -14,12 +14,7 @@ type MainCardProps = {};
 
 export const MainCard: React.FC<MainCardProps> = () => {
   return (
-    <Stack
-      height="100%"
-      border="solid 2px"
-      borderRadius="10px"
-      borderColor="#E2E8F0"
-    >
+    <Stack border="solid 2px" borderRadius="10px" borderColor="#E2E8F0">
       <Box
         py="10px"
         borderBottom="solid 2px"
@@ -54,7 +49,11 @@ export const MainCard: React.FC<MainCardProps> = () => {
         Buffs and Debuffs
       </Box>
       <Stack px="10px" pb="10px">
-        <Textarea resize="vertical" placeholder="[percent] [name]"></Textarea>
+        <Textarea
+          height="200px"
+          resize="vertical"
+          placeholder="[percent] [name]"
+        ></Textarea>
         <Button mx="auto" w="25%">
           Clear
         </Button>
