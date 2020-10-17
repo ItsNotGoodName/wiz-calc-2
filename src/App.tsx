@@ -12,19 +12,7 @@ const App: React.FC = () => {
       </Flex>
       <Flex wrap="wrap">
         <Flex w="250px">
-          <SpellCard />
-        </Flex>
-        <Flex w="250px">
-          <SpellCard />
-        </Flex>
-        <Flex w="250px">
-          <SpellCard />
-        </Flex>
-        <Flex w="250px">
-          <SpellCard />
-        </Flex>
-        <Flex w="250px">
-          <SpellCard />
+          <SpellCard spellName="" />
         </Flex>
         <Flex w="250px">
           <AddCard />
