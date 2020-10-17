@@ -9,13 +9,10 @@ import {
   Textarea,
 } from "@chakra-ui/core";
 import React from "react";
-import { useSpell } from "./UseSpell";
 
 type MainCardProps = {};
 
 export const MainCard: React.FC<MainCardProps> = () => {
-  const [spell, setSpell] = useSpell();
-
   return (
     <Stack border="solid 2px" borderRadius="10px" borderColor="#E2E8F0">
       <Box

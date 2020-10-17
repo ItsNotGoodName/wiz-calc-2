@@ -8,14 +8,15 @@ import {
   Text,
 } from "@chakra-ui/core";
 import React from "react";
+import { CharacterType } from "../types";
 import { useSpell } from "./UseSpell";
 
 type SpellCardProps = {
-  spellName: string;
+  character: CharacterType;
 };
 
-export const SpellCard: React.FC<SpellCardProps> = ({ spellName }) => {
-  const [spell, dispatch] = useSpell();
+export const SpellCard: React.FC<SpellCardProps> = ({ character }) => {
+  const [spell, dispatch] = useSpell({ character });
 
   return (
     <Stack
@@ -46,15 +47,14 @@ export const SpellCard: React.FC<SpellCardProps> = ({ spellName }) => {
           return (
             <Flex key={index}>
               <Box w="50%">
-                <NumberInput defaultValue={value}>
+                <NumberInput value={value} defaultValue={value}>
                   <NumberInputField
                     onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                       event.preventDefault();
-                      console.log(spell.bases);
                       dispatch({
                         type: "change_base",
                         index,
-                        value: parseInt(event.target.value),
+                        value: event.target.value,
                       });
                     }}
                   />
@@ -62,7 +62,7 @@ export const SpellCard: React.FC<SpellCardProps> = ({ spellName }) => {
               </Box>
               <Flex w="50%">
                 <Text m="auto" fontSize="20px" fontWeight="bold">
-                  100
+                  {spell.finalDamage[index]}
                 </Text>
               </Flex>
             </Flex>
