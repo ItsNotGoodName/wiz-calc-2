@@ -1,12 +1,13 @@
 export type CharacterType = {
   percentModifier: number;
   flatDamage: number;
-  buffs: [];
+  buffs: number[];
+  buffsRaw: string;
 };
 export type SpellType = {
   name: string;
   bases: number[];
-  finalDamage: number[];
+  damages: number[];
   character: CharacterType;
   enchantment?: number;
   increment?: {

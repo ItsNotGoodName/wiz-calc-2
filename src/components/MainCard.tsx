@@ -2,17 +2,21 @@ import {
   Box,
   Button,
   Flex,
-  NumberInput,
-  NumberInputField,
+  Input,
   Stack,
   Text,
   Textarea,
 } from "@chakra-ui/core";
 import React from "react";
+import { CharacterType } from "../types";
+import { CharacterActions } from "./UseCharacter";
 
-type MainCardProps = {};
+type MainCardProps = {
+  character: CharacterType;
+  dispatch: React.Dispatch<CharacterActions>;
+};
 
-export const MainCard: React.FC<MainCardProps> = () => {
+export const MainCard: React.FC<MainCardProps> = ({ character, dispatch }) => {
   return (
     <Stack border="solid 2px" borderRadius="10px" borderColor="#E2E8F0">
       <Box
@@ -27,15 +31,27 @@ export const MainCard: React.FC<MainCardProps> = () => {
       <Stack px="10px">
         <Flex>
           <Text my="auto">Percent Modifier</Text>
-          <NumberInput ml="auto" w="40%" defaultValue={0}>
-            <NumberInputField />
-          </NumberInput>
+          <Input
+            ml="auto"
+            w="40%"
+            value={character.percentModifier}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+              event.preventDefault();
+              dispatch({ type: "change_percent", value: event.target.value });
+            }}
+          />
         </Flex>
         <Flex>
           <Text my="auto">Flat Damage</Text>
-          <NumberInput ml="auto" w="40%" defaultValue={0}>
-            <NumberInputField />
-          </NumberInput>
+          <Input
+            ml="auto"
+            w="40%"
+            value={character.flatDamage}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+              event.preventDefault();
+              dispatch({ type: "change_flat", value: event.target.value });
+            }}
+          />
         </Flex>
       </Stack>
       <Box
@@ -53,6 +69,10 @@ export const MainCard: React.FC<MainCardProps> = () => {
           height="200px"
           resize="vertical"
           placeholder="[percent] [name]"
+          value={character.buffsRaw}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+            dispatch({ type: "change_buffs", value: event.target.value })
+          }
         ></Textarea>
         <Button mx="auto" w="25%">
           Clear

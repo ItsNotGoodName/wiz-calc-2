@@ -1,12 +1,4 @@
-import {
-  Box,
-  Flex,
-  Input,
-  NumberInput,
-  NumberInputField,
-  Stack,
-  Text,
-} from "@chakra-ui/core";
+import { Box, Flex, Input, Stack, Text } from "@chakra-ui/core";
 import React from "react";
 import { CharacterType } from "../types";
 import { useSpell } from "./UseSpell";
@@ -34,11 +26,11 @@ export const SpellCard: React.FC<SpellCardProps> = ({ character }) => {
           border="none"
           spellCheck="false"
           mb="5px"
+          value={spell.name}
           onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
             event.preventDefault();
             dispatch({ type: "change_name", name: event.target.value });
           }}
-          defaultValue={spell.name}
         ></Input>
       </Box>
       <Stack px="10px" borderBottom="solid 2px" borderColor="#E2E8F0"></Stack>
@@ -47,22 +39,21 @@ export const SpellCard: React.FC<SpellCardProps> = ({ character }) => {
           return (
             <Flex key={index}>
               <Box w="50%">
-                <NumberInput value={value} defaultValue={value}>
-                  <NumberInputField
-                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                      event.preventDefault();
-                      dispatch({
-                        type: "change_base",
-                        index,
-                        value: event.target.value,
-                      });
-                    }}
-                  />
-                </NumberInput>
+                <Input
+                  value={value}
+                  onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                    event.preventDefault();
+                    dispatch({
+                      type: "change_base",
+                      index,
+                      value: event.target.value,
+                    });
+                  }}
+                />
               </Box>
               <Flex w="50%">
                 <Text m="auto" fontSize="20px" fontWeight="bold">
-                  {spell.finalDamage[index]}
+                  {spell.damages[index]}
                 </Text>
               </Flex>
             </Flex>

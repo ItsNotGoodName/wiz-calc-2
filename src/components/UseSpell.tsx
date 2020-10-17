@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { MAX_SPELL_DAMAGE } from "../constants";
 import { CharacterType, SpellType } from "../types";
 import { calculateDamage } from "../utils/calculateDamage";
@@ -12,6 +12,10 @@ export type SpellActions =
       type: "change_base";
       index: number;
       value: string;
+    }
+  | {
+      type: "update_character";
+      value: CharacterType;
     };
 
 const spellReducer = (state: SpellType, action: SpellActions): SpellType => {
@@ -26,22 +30,29 @@ const spellReducer = (state: SpellType, action: SpellActions): SpellType => {
 
       if (!value) {
         newState.bases[action.index] = 0;
-        newState.finalDamage[action.index] = 0;
-      } else if (value > MAX_SPELL_DAMAGE) {
-        newState.bases[action.index] = MAX_SPELL_DAMAGE;
-        newState.finalDamage[action.index] = calculateDamage(
-          MAX_SPELL_DAMAGE,
-          state.character.percentModifier,
-          state.character.flatDamage,
-          state.character.buffs
-        );
+        newState.damages[action.index] = calculateDamage(newState.character, 0);
       } else {
-        newState.bases[action.index] = value;
-        newState.finalDamage[action.index] = calculateDamage(
-          value,
-          state.character.percentModifier,
-          state.character.flatDamage,
-          state.character.buffs
+        if (value > MAX_SPELL_DAMAGE) {
+          newState.bases[action.index] = MAX_SPELL_DAMAGE;
+        } else {
+          newState.bases[action.index] = value;
+        }
+
+        newState.damages[action.index] = calculateDamage(
+          newState.character,
+          newState.bases[action.index]
+        );
+      }
+      return newState;
+    }
+    case "update_character": {
+      const newState = { ...state };
+      newState.character = action.value;
+
+      for (let i = 0; i < newState.bases.length; i++) {
+        newState.damages[i] = calculateDamage(
+          newState.character,
+          newState.bases[i]
         );
       }
       return newState;
@@ -56,8 +67,16 @@ export const useSpell = ({ character }: { character: CharacterType }) => {
   const initState: SpellType = {
     name: "",
     bases: [0],
-    finalDamage: [0],
+    damages: [0],
     character,
   };
-  return React.useReducer(spellReducer, initState);
+  const hook = React.useReducer(spellReducer, initState);
+
+  // Update character when it changes
+  const [, dispatch] = hook;
+  useEffect(() => {
+    dispatch({ type: "update_character", value: character });
+  }, [character, dispatch]);
+
+  return hook;
 };

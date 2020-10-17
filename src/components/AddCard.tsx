@@ -1,11 +1,4 @@
-import {
-  Button,
-  Flex,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
-} from "@chakra-ui/core";
+import { Button } from "@chakra-ui/core";
 import React from "react";
 
 type AddCardProps = {};
