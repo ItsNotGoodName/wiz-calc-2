@@ -12,7 +12,7 @@ const App: React.FC = () => {
 
   return (
     <Box maxW="900px" mt="5px" mx="auto">
-      <Flex float="left" minW="250px" w="250px" mr="10px">
+      <Flex float="left" minW="250px" w="250px" mx="10px">
         <MainCard character={character} dispatch={setCharacter} />
       </Flex>
       <Flex wrap="wrap">
