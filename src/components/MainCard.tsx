@@ -1,14 +1,7 @@
-import {
-  Box,
-  Button,
-  Flex,
-  Input,
-  Stack,
-  Text,
-  Textarea,
-} from "@chakra-ui/core";
+import { Box, Button, Stack, Textarea } from "@chakra-ui/core";
 import React from "react";
 import { CharacterType } from "../types";
+import { LabelNumber } from "./LabelNumber";
 import { CharacterActions } from "./UseCharacter";
 
 type MainCardProps = {
@@ -29,30 +22,22 @@ export const MainCard: React.FC<MainCardProps> = ({ character, dispatch }) => {
         Character Stats
       </Box>
       <Stack px="10px">
-        <Flex>
-          <Text my="auto">Percent Modifier</Text>
-          <Input
-            ml="auto"
-            w="40%"
-            value={character.percentModifier}
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-              event.preventDefault();
-              dispatch({ type: "change_percent", value: event.target.value });
-            }}
-          />
-        </Flex>
-        <Flex>
-          <Text my="auto">Flat Damage</Text>
-          <Input
-            ml="auto"
-            w="40%"
-            value={character.flatDamage}
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-              event.preventDefault();
-              dispatch({ type: "change_flat", value: event.target.value });
-            }}
-          />
-        </Flex>
+        <LabelNumber
+          label="Percent Modifier"
+          value={character.percentModifier}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+            event.preventDefault();
+            dispatch({ type: "change_percent", value: event.target.value });
+          }}
+        />
+        <LabelNumber
+          label="Flat Damage"
+          value={character.flatDamage}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+            event.preventDefault();
+            dispatch({ type: "change_flat", value: event.target.value });
+          }}
+        />
       </Stack>
       <Box
         py="10px"

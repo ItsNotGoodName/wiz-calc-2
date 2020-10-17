@@ -8,7 +8,7 @@ import { v4 } from "uuid";
 const App: React.FC = () => {
   const [character, setCharacter] = useCharacter();
 
-  const [spells, setSpells] = useState<string[]>([]);
+  const [spells, setSpells] = useState<string[]>([v4()]);
 
   return (
     <Box maxW="900px" mt="5px" mx="auto">

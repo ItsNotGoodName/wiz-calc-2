@@ -1,6 +1,7 @@
 import { Box, Flex, Input, Stack, Text } from "@chakra-ui/core";
 import React from "react";
 import { CharacterType } from "../types";
+import { LabelNumber } from "./LabelNumber";
 import { useSpell } from "./UseSpell";
 
 type SpellCardProps = {
@@ -33,7 +34,9 @@ export const SpellCard: React.FC<SpellCardProps> = ({ character }) => {
           }}
         ></Input>
       </Box>
-      <Stack px="10px" borderBottom="solid 2px" borderColor="#E2E8F0"></Stack>
+      <Stack pb="10px" px="10px" borderBottom="solid 2px" borderColor="#E2E8F0">
+        <LabelNumber label="Enchantment" />
+      </Stack>
       <Stack px="10px" pb="10px">
         {spell.bases.map((value, index) => {
           return (
