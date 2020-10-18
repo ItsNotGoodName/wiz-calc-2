@@ -44,8 +44,11 @@ export const useCharacter = ({ reducer = characterReducer } = {}) => {
   const initState: CharacterType = {
     percentModifier: 0,
     flatDamage: 0,
+    pierce: 0,
     buffs: [],
     buffsRaw: "",
+    shields: [],
+    sheldsRaw: "",
   };
   return React.useReducer(reducer, initState);
 };

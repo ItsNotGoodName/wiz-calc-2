@@ -1,8 +1,11 @@
 export type CharacterType = {
   percentModifier: number;
   flatDamage: number;
+  pierce: number;
   buffs: number[];
   buffsRaw: string;
+  shields: number[];
+  sheldsRaw: string;
 };
 export type SpellType = {
   id: string;
