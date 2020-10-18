@@ -1,4 +1,4 @@
-import { Box, BoxProps, Stack } from "@chakra-ui/core";
+import { BoxProps, Stack } from "@chakra-ui/core";
 import React from "react";
 import { BORDER, BORDER_COLOR } from "../../constants";
 type CardItem = {} & BoxProps;
