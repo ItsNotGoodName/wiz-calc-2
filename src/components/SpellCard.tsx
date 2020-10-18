@@ -3,6 +3,7 @@ import React from "react";
 import { BORDER, BORDER_COLOR } from "../constants";
 import { CharacterType } from "../types";
 import { CardOptionMenu } from "./CardOptionMenu";
+import { CardWrapper } from "./CardWrapper";
 import { LabelNumber } from "./LabelNumber";
 import { useSpell } from "./UseSpell";
 
@@ -20,13 +21,7 @@ export const SpellCard: React.FC<SpellCardProps> = ({
   const [spell, dispatch] = useSpell({ character, id });
 
   return (
-    <Stack
-      w="100%"
-      border={BORDER}
-      borderRadius="10px"
-      boxShadow="md"
-      borderColor={BORDER_COLOR}
-    >
+    <CardWrapper>
       <Box p="5px" borderBottom={BORDER} borderColor={BORDER_COLOR}>
         <Flex>
           <Flex>
@@ -144,6 +139,6 @@ export const SpellCard: React.FC<SpellCardProps> = ({
           );
         })}
       </Stack>
-    </Stack>
+    </CardWrapper>
   );
 };

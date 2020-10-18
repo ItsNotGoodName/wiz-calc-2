@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { v4 } from "uuid";
 import { MainCard } from "./components/MainCard";
 import { SpellCard } from "./components/SpellCard";
+import { ToolbarCard } from "./components/ToolBarCard";
 import { useCharacter } from "./components/UseCharacter";
 import { BORDER, BORDER_COLOR, MAX_SPELLS } from "./constants";
 
@@ -49,9 +50,12 @@ const App: React.FC = () => {
         </Heading>
       </Box>
       <Box>
-        <Flex float="left" minW="181px" w="181px" mr="20px">
-          <MainCard character={character} dispatch={setCharacter} />
-        </Flex>
+        <Box float="left" minW="181px" w="181px" mr="20px">
+          <Box mb="20px">
+            <MainCard character={character} dispatch={setCharacter} />
+          </Box>
+          <ToolbarCard />
+        </Box>
         <Flex wrap="wrap">
           {spellCards}
           <Flex w="206px" mr="10px">
