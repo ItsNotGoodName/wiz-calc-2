@@ -6,7 +6,7 @@ import { MainCard } from "./components/MainCard";
 import { SpellCard } from "./components/SpellCard";
 import { ToolbarCard } from "./components/ToolBarCard";
 import { useCharacter } from "./components/UseCharacter";
-import { BORDER, BORDER_COLOR, MAX_SPELLS } from "./constants";
+import { MAX_SPELLS } from "./constants";
 
 const App: React.FC = () => {
   const [character, setCharacter] = useCharacter();

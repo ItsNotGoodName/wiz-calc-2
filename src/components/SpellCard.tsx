@@ -1,14 +1,13 @@
 import { Box, Flex, Input, Text } from "@chakra-ui/core";
 import React from "react";
-import { BORDER, BORDER_COLOR } from "../constants";
 import { CharacterType } from "../types";
 import { CardFooter } from "./Card/CardFooter";
+import { CardHeader } from "./Card/CardHeader";
 import { CardItem } from "./Card/CardItem";
-import { OptionMenu } from "./OptionMenu";
 import { CardWrapper } from "./Card/CardWrapper";
 import { LabelNumber } from "./LabelNumber";
+import { OptionMenu } from "./OptionMenu";
 import { useSpell } from "./UseSpell";
-import { CardHeader } from "./Card/CardHeader";
 
 type SpellCardProps = {
   character: CharacterType;

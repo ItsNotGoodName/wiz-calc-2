@@ -1,4 +1,4 @@
-import { Box, BoxProps, Stack, StackProps } from "@chakra-ui/core";
+import { Stack, StackProps } from "@chakra-ui/core";
 import React from "react";
 type CardFooter = {} & StackProps;
 

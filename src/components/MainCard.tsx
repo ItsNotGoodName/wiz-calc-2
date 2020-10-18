@@ -1,6 +1,5 @@
-import { Text, Box, Button, Stack, Textarea } from "@chakra-ui/core";
+import { Button, Text, Textarea } from "@chakra-ui/core";
 import React from "react";
-import { BORDER, BORDER_COLOR } from "../constants";
 import { CharacterType } from "../types";
 import { CardFooter } from "./Card/CardFooter";
 import { CardHeader } from "./Card/CardHeader";
