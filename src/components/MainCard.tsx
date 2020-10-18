@@ -59,7 +59,11 @@ export const MainCard: React.FC<MainCardProps> = ({ character, dispatch }) => {
             dispatch({ type: "change_buffs", value: event.target.value })
           }
         ></Textarea>
-        <Button mx="auto" w="25%">
+        <Button
+          onClick={() => dispatch({ type: "change_buffs", value: "" })}
+          mx="auto"
+          w="25%"
+        >
           Clear
         </Button>
       </Stack>
