@@ -1,5 +1,6 @@
 import { Box, Button, Stack, Textarea } from "@chakra-ui/core";
 import React from "react";
+import { BORDER_COLOR } from "../constants";
 import { CharacterType } from "../types";
 import { LabelNumber } from "./LabelNumber";
 import { CharacterActions } from "./UseCharacter";
@@ -11,11 +12,11 @@ type MainCardProps = {
 
 export const MainCard: React.FC<MainCardProps> = ({ character, dispatch }) => {
   return (
-    <Stack border="solid 2px" borderRadius="10px" borderColor="#E2E8F0">
+    <Stack border="solid 2px" borderRadius="10px" borderColor={BORDER_COLOR}>
       <Box
         p="10px"
         borderBottom="solid 2px"
-        borderColor="#E2E8F0"
+        borderColor={BORDER_COLOR}
         textAlign="center"
         fontSize="20px"
       >
@@ -43,7 +44,7 @@ export const MainCard: React.FC<MainCardProps> = ({ character, dispatch }) => {
         py="10px"
         borderBottom="solid 2px"
         borderTop="solid 2px"
-        borderColor="#E2E8F0"
+        borderColor={BORDER_COLOR}
         fontSize="20px"
         textAlign="center"
         mb="100px"

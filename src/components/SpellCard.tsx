@@ -1,5 +1,6 @@
 import { Box, Flex, Input, Stack, Text } from "@chakra-ui/core";
 import React from "react";
+import { BORDER_COLOR } from "../constants";
 import { CharacterType } from "../types";
 import { CardOptionMenu } from "./CardOptionMenu";
 import { LabelNumber } from "./LabelNumber";
@@ -17,9 +18,9 @@ export const SpellCard: React.FC<SpellCardProps> = ({ character }) => {
       w="100%"
       border="solid 2px"
       borderRadius="10px"
-      borderColor="#E2E8F0"
+      borderColor={BORDER_COLOR}
     >
-      <Box p="5px" borderBottom="solid 2px" borderColor="#E2E8F0">
+      <Box p="5px" borderBottom="solid 2px" borderColor={BORDER_COLOR}>
         <Flex>
           <Input
             textAlign="center"
@@ -42,7 +43,7 @@ export const SpellCard: React.FC<SpellCardProps> = ({ character }) => {
             px="10px"
             pb="10px"
             borderBottom="solid 2px"
-            borderColor="#E2E8F0"
+            borderColor={BORDER_COLOR}
           >
             <LabelNumber
               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
@@ -61,7 +62,7 @@ export const SpellCard: React.FC<SpellCardProps> = ({ character }) => {
             px="10px"
             pb="10px"
             borderBottom="solid 2px"
-            borderColor="#E2E8F0"
+            borderColor={BORDER_COLOR}
           >
             <Flex>
               <Box pr="10px">

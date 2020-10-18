@@ -22,7 +22,7 @@ const App: React.FC = () => {
             <SpellCard character={character} />
           </Flex>
         ))}
-        <Flex w="250px" mr="10px">
+        <Flex w="200px" mr="10px">
           {spells.length < MAX_SPELLS ? (
             <IconButton
               variantColor="blue"
