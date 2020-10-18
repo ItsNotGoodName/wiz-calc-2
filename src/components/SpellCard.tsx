@@ -29,26 +29,30 @@ export const SpellCard: React.FC<SpellCardProps> = ({
     >
       <Box p="5px" borderBottom={BORDER} borderColor={BORDER_COLOR}>
         <Flex>
-          <Input
-            textAlign="center"
-            fontSize="20px"
-            mr="5px"
-            border="none"
-            spellCheck="false"
-            value={spell.name}
-            onFocus={(event: React.ChangeEvent<HTMLInputElement>) => {
-              event.target.select();
-            }}
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-              event.preventDefault();
-              dispatch({ type: "change_name", name: event.target.value });
-            }}
-          />
-          <CardOptionMenu
-            dispatch={dispatch}
-            deleteSpell={deleteSpell}
-            id={id}
-          />
+          <Flex>
+            <Input
+              textAlign="center"
+              fontSize="20px"
+              mr="5px"
+              border="none"
+              spellCheck="false"
+              value={spell.name}
+              onFocus={(event: React.ChangeEvent<HTMLInputElement>) => {
+                event.target.select();
+              }}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                event.preventDefault();
+                dispatch({ type: "change_name", name: event.target.value });
+              }}
+            />
+          </Flex>
+          <Flex>
+            <CardOptionMenu
+              dispatch={dispatch}
+              deleteSpell={deleteSpell}
+              id={id}
+            />
+          </Flex>
         </Flex>
       </Box>
       <Stack>
