@@ -11,6 +11,14 @@ const App: React.FC = () => {
 
   const [spells, setSpells] = useState<string[]>([v4()]);
 
+  const spellCards = spells.map((value, index) => {
+    return (
+      <Flex key={index} mb="auto" pb="20px" w="206px" mr="20px">
+        <SpellCard character={character} />
+      </Flex>
+    );
+  });
+
   return (
     <Box maxW="900px" pl="20px" mx="auto">
       <Box
@@ -31,11 +39,7 @@ const App: React.FC = () => {
           <MainCard character={character} dispatch={setCharacter} />
         </Flex>
         <Flex wrap="wrap">
-          {spells.map((_, index) => (
-            <Flex key={index} mb="auto" pb="20px" w="206px" mr="20px">
-              <SpellCard character={character} />
-            </Flex>
-          ))}
+          {spellCards}
           <Flex w="201px" mr="10px">
             {spells.length < MAX_SPELLS ? (
               <IconButton

@@ -99,7 +99,7 @@ export const SpellCard: React.FC<SpellCardProps> = ({ character }) => {
         {spell.bases.map((value, index) => {
           return (
             <Flex key={index}>
-              <Box w="50%">
+              <Box w="45%">
                 <Input
                   value={value}
                   onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
@@ -112,9 +112,18 @@ export const SpellCard: React.FC<SpellCardProps> = ({ character }) => {
                   }}
                 />
               </Box>
-              <Flex w="50%">
-                <Text m="auto" fontSize="20px" fontWeight="bold">
-                  {spell.damages[index]}
+              <Flex ml="auto" w="50%">
+                <Text
+                  flexWrap="wrap"
+                  wordBreak="break-word"
+                  my="auto"
+                  ml="auto"
+                  fontSize="18px"
+                  fontWeight="bold"
+                >
+                  {spell.damages[index].toLocaleString("en", {
+                    useGrouping: true,
+                  })}
                 </Text>
               </Flex>
             </Flex>
