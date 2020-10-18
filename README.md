@@ -2,6 +2,6 @@
 
 Better version of wiz-calc
 
-https://itsnotgoodname.github.io/wiz-calc/
+https://itsnotgoodname.github.io/wiz-calc-2/
 ![](public/demo.png)
 
