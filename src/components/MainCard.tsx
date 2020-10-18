@@ -1,8 +1,11 @@
-import { Box, Button, Stack, Textarea } from "@chakra-ui/core";
+import { Text, Box, Button, Stack, Textarea } from "@chakra-ui/core";
 import React from "react";
 import { BORDER, BORDER_COLOR } from "../constants";
 import { CharacterType } from "../types";
-import { CardWrapper } from "./CardWrapper";
+import { CardFooter } from "./Card/CardFooter";
+import { CardHeader } from "./Card/CardHeader";
+import { CardItem } from "./Card/CardItem";
+import { CardWrapper } from "./Card/CardWrapper";
 import { LabelNumber } from "./LabelNumber";
 import { CharacterActions } from "./UseCharacter";
 
@@ -14,16 +17,12 @@ type MainCardProps = {
 export const MainCard: React.FC<MainCardProps> = ({ character, dispatch }) => {
   return (
     <CardWrapper>
-      <Box
-        p="10px"
-        borderBottom={BORDER}
-        borderColor={BORDER_COLOR}
-        textAlign="center"
-        fontSize="20px"
-      >
-        Character Stats
-      </Box>
-      <Stack px="10px" spacing="5px" pb="5px">
+      <CardHeader>
+        <Text textAlign="center" fontSize="20px">
+          Character Stats
+        </Text>
+      </CardHeader>
+      <CardItem>
         <LabelNumber
           value={character.percentModifier}
           onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
@@ -42,18 +41,13 @@ export const MainCard: React.FC<MainCardProps> = ({ character, dispatch }) => {
         >
           Flat Damage
         </LabelNumber>
-      </Stack>
-      <Box
-        p="10px"
-        borderBottom={BORDER}
-        borderTop={BORDER}
-        borderColor={BORDER_COLOR}
-        fontSize="20px"
-        textAlign="center"
-      >
-        + / - Charms
-      </Box>
-      <Stack spacing="5px" py="5px" px="10px">
+      </CardItem>
+      <CardItem>
+        <Text fontSize="20px" textAlign="center">
+          + / - Charms
+        </Text>
+      </CardItem>
+      <CardFooter>
         <Textarea
           height="212px"
           resize="vertical"
@@ -70,7 +64,7 @@ export const MainCard: React.FC<MainCardProps> = ({ character, dispatch }) => {
         >
           Clear
         </Button>
-      </Stack>
+      </CardFooter>
     </CardWrapper>
   );
 };

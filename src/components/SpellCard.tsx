@@ -1,11 +1,14 @@
-import { Box, Flex, Input, Stack, Text } from "@chakra-ui/core";
+import { Box, Flex, Input, Text } from "@chakra-ui/core";
 import React from "react";
 import { BORDER, BORDER_COLOR } from "../constants";
 import { CharacterType } from "../types";
-import { CardOptionMenu } from "./CardOptionMenu";
-import { CardWrapper } from "./CardWrapper";
+import { CardFooter } from "./Card/CardFooter";
+import { CardItem } from "./Card/CardItem";
+import { OptionMenu } from "./OptionMenu";
+import { CardWrapper } from "./Card/CardWrapper";
 import { LabelNumber } from "./LabelNumber";
 import { useSpell } from "./UseSpell";
+import { CardHeader } from "./Card/CardHeader";
 
 type SpellCardProps = {
   character: CharacterType;
@@ -22,7 +25,7 @@ export const SpellCard: React.FC<SpellCardProps> = ({
 
   return (
     <CardWrapper>
-      <Box p="5px" borderBottom={BORDER} borderColor={BORDER_COLOR}>
+      <CardHeader p="5px">
         <Flex>
           <Flex>
             <Input
@@ -42,21 +45,12 @@ export const SpellCard: React.FC<SpellCardProps> = ({
             />
           </Flex>
           <Flex>
-            <CardOptionMenu
-              dispatch={dispatch}
-              deleteSpell={deleteSpell}
-              id={id}
-            />
+            <OptionMenu dispatch={dispatch} deleteSpell={deleteSpell} id={id} />
           </Flex>
         </Flex>
-      </Box>
+      </CardHeader>
       {spell.enchantment !== undefined ? (
-        <Box
-          px="10px"
-          pb="10px"
-          borderBottom={BORDER}
-          borderColor={BORDER_COLOR}
-        >
+        <CardItem>
           <LabelNumber
             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
               dispatch({
@@ -68,15 +62,10 @@ export const SpellCard: React.FC<SpellCardProps> = ({
           >
             Enchantment
           </LabelNumber>
-        </Box>
+        </CardItem>
       ) : null}
       {spell.increment !== undefined ? (
-        <Stack
-          px="10px"
-          pb="10px"
-          borderBottom={BORDER}
-          borderColor={BORDER_COLOR}
-        >
+        <CardItem>
           <Flex>
             <Box pr="10px">
               <LabelNumber
@@ -103,9 +92,9 @@ export const SpellCard: React.FC<SpellCardProps> = ({
               Base
             </LabelNumber>
           </Flex>
-        </Stack>
+        </CardItem>
       ) : null}
-      <Box px="10px" pt="5px" pb="10px">
+      <CardFooter>
         {spell.bases.map((value, index) => {
           return (
             <Flex key={index}>
@@ -139,7 +128,7 @@ export const SpellCard: React.FC<SpellCardProps> = ({
             </Flex>
           );
         })}
-      </Box>
+      </CardFooter>
     </CardWrapper>
   );
 };

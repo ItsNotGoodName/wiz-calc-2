@@ -3,13 +3,13 @@ import React from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { SpellActions } from "./UseSpell";
 
-type CardOptionMenu = {
+type OptionMenu = {
   dispatch: React.Dispatch<SpellActions>;
   id: string;
   deleteSpell: (id: string) => void;
 };
 
-export const CardOptionMenu: React.FC<CardOptionMenu> = ({
+export const OptionMenu: React.FC<OptionMenu> = ({
   dispatch,
   id,
   deleteSpell,

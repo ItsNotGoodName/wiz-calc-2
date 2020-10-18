@@ -1,6 +1,7 @@
 import { Box, Flex, Heading, IconButton } from "@chakra-ui/core";
 import React, { useState } from "react";
 import { v4 } from "uuid";
+import { CardWrapper } from "./components/Card/CardWrapper";
 import { MainCard } from "./components/MainCard";
 import { SpellCard } from "./components/SpellCard";
 import { ToolbarCard } from "./components/ToolBarCard";
@@ -36,19 +37,11 @@ const App: React.FC = () => {
 
   return (
     <Box maxW="900px" pl="20px" mx="auto">
-      <Box
-        my="20px"
-        mr="20px"
-        py="10px"
-        boxShadow="md"
-        border={BORDER}
-        borderRadius="10px"
-        borderColor={BORDER_COLOR}
-      >
+      <CardWrapper py="10px" mr="20px" my="20px">
         <Heading color="gray.900" textAlign="center" size="xl">
           Wiz Calculator 2
         </Heading>
-      </Box>
+      </CardWrapper>
       <Box>
         <Box float="left" minW="181px" w="181px" mr="20px">
           <Box mb="20px">
