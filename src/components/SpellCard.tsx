@@ -50,61 +50,59 @@ export const SpellCard: React.FC<SpellCardProps> = ({
           </Flex>
         </Flex>
       </Box>
-      <Stack>
-        {spell.enchantment !== undefined ? (
-          <Box
-            px="10px"
-            pb="10px"
-            borderBottom={BORDER}
-            borderColor={BORDER_COLOR}
-          >
-            <LabelNumber
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                dispatch({
-                  type: "change_enchantment",
-                  value: event.target.value,
-                });
-              }}
-              value={spell.enchantment}
-              label="Enchantment"
-            />
-          </Box>
-        ) : null}
-        {spell.increment !== undefined ? (
-          <Stack
-            px="10px"
-            pb="10px"
-            borderBottom={BORDER}
-            borderColor={BORDER_COLOR}
-          >
-            <Flex>
-              <Box pr="10px">
-                <LabelNumber
-                  onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                    dispatch({
-                      type: "change_increment",
-                      pips: event.target.value,
-                    });
-                  }}
-                  value={spell.increment.pips}
-                  label="Pips"
-                />
-              </Box>
+      {spell.enchantment !== undefined ? (
+        <Box
+          px="10px"
+          pb="10px"
+          borderBottom={BORDER}
+          borderColor={BORDER_COLOR}
+        >
+          <LabelNumber
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+              dispatch({
+                type: "change_enchantment",
+                value: event.target.value,
+              });
+            }}
+            value={spell.enchantment}
+            label="Enchantment"
+          />
+        </Box>
+      ) : null}
+      {spell.increment !== undefined ? (
+        <Stack
+          px="10px"
+          pb="10px"
+          borderBottom={BORDER}
+          borderColor={BORDER_COLOR}
+        >
+          <Flex>
+            <Box pr="10px">
               <LabelNumber
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                   dispatch({
                     type: "change_increment",
-                    base: event.target.value,
+                    pips: event.target.value,
                   });
                 }}
-                value={spell.increment.base}
-                label="Increment"
+                value={spell.increment.pips}
+                label="Pips"
               />
-            </Flex>
-          </Stack>
-        ) : null}
-      </Stack>
-      <Stack px="10px" pb="10px">
+            </Box>
+            <LabelNumber
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                dispatch({
+                  type: "change_increment",
+                  base: event.target.value,
+                });
+              }}
+              value={spell.increment.base}
+              label="Increment"
+            />
+          </Flex>
+        </Stack>
+      ) : null}
+      <Box px="10px" pt="5px" pb="10px">
         {spell.bases.map((value, index) => {
           return (
             <Flex key={index}>
@@ -138,7 +136,7 @@ export const SpellCard: React.FC<SpellCardProps> = ({
             </Flex>
           );
         })}
-      </Stack>
+      </Box>
     </CardWrapper>
   );
 };

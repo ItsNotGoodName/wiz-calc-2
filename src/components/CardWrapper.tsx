@@ -9,6 +9,7 @@ export const CardWrapper: React.FC<CardWrapperProps> = ({
 }) => {
   return (
     <Stack
+      spacing="5px"
       boxShadow="md"
       border={BORDER}
       borderRadius="10px"

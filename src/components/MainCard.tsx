@@ -1,4 +1,4 @@
-import { Box, Button, Stack, Textarea } from "@chakra-ui/core";
+import { Box, Button, Flex, Stack, Textarea } from "@chakra-ui/core";
 import React from "react";
 import { BORDER, BORDER_COLOR } from "../constants";
 import { CharacterType } from "../types";
@@ -23,7 +23,7 @@ export const MainCard: React.FC<MainCardProps> = ({ character, dispatch }) => {
       >
         Character Stats
       </Box>
-      <Stack pt="5px" px="10px">
+      <Stack px="10px" spacing="5px" pb="5px">
         <LabelNumber
           label="Percent Modifier"
           value={character.percentModifier}
@@ -42,17 +42,16 @@ export const MainCard: React.FC<MainCardProps> = ({ character, dispatch }) => {
         />
       </Stack>
       <Box
-        py="10px"
+        p="10px"
         borderBottom={BORDER}
         borderTop={BORDER}
         borderColor={BORDER_COLOR}
         fontSize="20px"
         textAlign="center"
-        mb="100px"
       >
         + / - Charms
       </Box>
-      <Stack px="10px" pb="10px" pt="5px">
+      <Stack spacing="5px" py="5px" px="10px">
         <Textarea
           height="212px"
           resize="vertical"
@@ -65,7 +64,6 @@ export const MainCard: React.FC<MainCardProps> = ({ character, dispatch }) => {
         <Button
           onClick={() => dispatch({ type: "change_buffs", value: "" })}
           mx="auto"
-          mt="5px"
           w="40%"
         >
           Clear
