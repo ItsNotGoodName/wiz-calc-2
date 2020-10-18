@@ -26,7 +26,9 @@ const App: React.FC = () => {
           {spells.length < MAX_SPELLS ? (
             <IconButton
               variantColor="blue"
-              m="auto"
+              boxShadow="md"
+              mx="auto"
+              mt="25px"
               aria-label="Add Spellcard"
               icon="add"
               onClick={() => {

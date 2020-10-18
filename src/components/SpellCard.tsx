@@ -18,6 +18,7 @@ export const SpellCard: React.FC<SpellCardProps> = ({ character }) => {
       w="100%"
       border="solid 2px"
       borderRadius="10px"
+      boxShadow="md"
       borderColor={BORDER_COLOR}
     >
       <Box p="5px" borderBottom="solid 2px" borderColor={BORDER_COLOR}>

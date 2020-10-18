@@ -12,7 +12,12 @@ type MainCardProps = {
 
 export const MainCard: React.FC<MainCardProps> = ({ character, dispatch }) => {
   return (
-    <Stack border="solid 2px" borderRadius="10px" borderColor={BORDER_COLOR}>
+    <Stack
+      boxShadow="md"
+      border="solid 2px"
+      borderRadius="10px"
+      borderColor={BORDER_COLOR}
+    >
       <Box
         p="10px"
         borderBottom="solid 2px"
