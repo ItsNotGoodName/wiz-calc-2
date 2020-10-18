@@ -54,7 +54,7 @@ export const MainCard: React.FC<MainCardProps> = ({ character, dispatch }) => {
         textAlign="center"
         mb="100px"
       >
-        Buffs and Debuffs
+        + / - Charms
       </Box>
       <Stack px="10px" pb="10px" pt="5px">
         <Textarea
