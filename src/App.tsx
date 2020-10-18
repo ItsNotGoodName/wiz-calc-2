@@ -58,7 +58,7 @@ const App: React.FC = () => {
         </Box>
         <Flex wrap="wrap">
           {spellCards}
-          <Flex w="206px" mr="10px">
+          <Flex w="216px" mr="10px">
             {spells.length < MAX_SPELLS ? (
               <IconButton
                 variantColor="blue"
