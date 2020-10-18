@@ -36,21 +36,33 @@ export const SpellCard: React.FC<SpellCardProps> = ({ character }) => {
           <CardOptionMenu dispatch={dispatch} />
         </Flex>
       </Box>
-      <Stack pb="10px" px="10px" borderBottom="solid 2px" borderColor="#E2E8F0">
+      <Stack>
         {spell.enchantment !== undefined ? (
-          <LabelNumber
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-              dispatch({
-                type: "change_enchantment",
-                value: event.target.value,
-              });
-            }}
-            value={spell.enchantment}
-            label="Enchantment"
-          />
+          <Flex
+            px="10px"
+            pb="10px"
+            borderBottom="solid 2px"
+            borderColor="#E2E8F0"
+          >
+            <LabelNumber
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                dispatch({
+                  type: "change_enchantment",
+                  value: event.target.value,
+                });
+              }}
+              value={spell.enchantment}
+              label="Enchantment"
+            />
+          </Flex>
         ) : null}
         {spell.increment !== undefined ? (
-          <>
+          <Stack
+            px="10px"
+            pb="10px"
+            borderBottom="solid 2px"
+            borderColor="#E2E8F0"
+          >
             <LabelNumber
               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                 dispatch({
@@ -69,9 +81,9 @@ export const SpellCard: React.FC<SpellCardProps> = ({ character }) => {
                 });
               }}
               value={spell.increment.base}
-              label="Increment Base"
+              label="Increment"
             />
-          </>
+          </Stack>
         ) : null}
       </Stack>
       <Stack px="10px" pb="10px">
