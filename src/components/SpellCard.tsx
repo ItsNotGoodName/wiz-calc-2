@@ -29,6 +29,9 @@ export const SpellCard: React.FC<SpellCardProps> = ({ character }) => {
             border="none"
             spellCheck="false"
             value={spell.name}
+            onFocus={(event: React.ChangeEvent<HTMLInputElement>) => {
+              event.target.select();
+            }}
             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
               event.preventDefault();
               dispatch({ type: "change_name", name: event.target.value });
