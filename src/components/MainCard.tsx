@@ -13,15 +13,15 @@ export const MainCard: React.FC<MainCardProps> = ({ character, dispatch }) => {
   return (
     <Stack border="solid 2px" borderRadius="10px" borderColor="#E2E8F0">
       <Box
-        py="10px"
+        p="10px"
         borderBottom="solid 2px"
         borderColor="#E2E8F0"
         textAlign="center"
-        fontSize="24px"
+        fontSize="20px"
       >
         Character Stats
       </Box>
-      <Stack px="10px">
+      <Stack pt="5px" px="10px">
         <LabelNumber
           label="Percent Modifier"
           value={character.percentModifier}
@@ -46,23 +46,25 @@ export const MainCard: React.FC<MainCardProps> = ({ character, dispatch }) => {
         borderColor="#E2E8F0"
         fontSize="20px"
         textAlign="center"
+        mb="100px"
       >
         Buffs and Debuffs
       </Box>
-      <Stack px="10px" pb="10px">
+      <Stack px="10px" pb="10px" pt="5px">
         <Textarea
           height="200px"
           resize="vertical"
           placeholder="[percent] [name]"
           value={character.buffsRaw}
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-            dispatch({ type: "change_buffs", value: event.target.value })
-          }
-        ></Textarea>
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+            dispatch({ type: "change_buffs", value: event.target.value });
+          }}
+        />
         <Button
           onClick={() => dispatch({ type: "change_buffs", value: "" })}
           mx="auto"
-          w="25%"
+          mt="5px"
+          w="40%"
         >
           Clear
         </Button>

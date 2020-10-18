@@ -38,7 +38,7 @@ export const SpellCard: React.FC<SpellCardProps> = ({ character }) => {
       </Box>
       <Stack>
         {spell.enchantment !== undefined ? (
-          <Flex
+          <Box
             px="10px"
             pb="10px"
             borderBottom="solid 2px"
@@ -54,7 +54,7 @@ export const SpellCard: React.FC<SpellCardProps> = ({ character }) => {
               value={spell.enchantment}
               label="Enchantment"
             />
-          </Flex>
+          </Box>
         ) : null}
         {spell.increment !== undefined ? (
           <Stack
@@ -63,26 +63,30 @@ export const SpellCard: React.FC<SpellCardProps> = ({ character }) => {
             borderBottom="solid 2px"
             borderColor="#E2E8F0"
           >
-            <LabelNumber
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                dispatch({
-                  type: "change_increment",
-                  pips: event.target.value,
-                });
-              }}
-              value={spell.increment.pips}
-              label="Pips"
-            />
-            <LabelNumber
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                dispatch({
-                  type: "change_increment",
-                  base: event.target.value,
-                });
-              }}
-              value={spell.increment.base}
-              label="Increment"
-            />
+            <Flex>
+              <Box pr="10px">
+                <LabelNumber
+                  onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                    dispatch({
+                      type: "change_increment",
+                      pips: event.target.value,
+                    });
+                  }}
+                  value={spell.increment.pips}
+                  label="Pips"
+                />
+              </Box>
+              <LabelNumber
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                  dispatch({
+                    type: "change_increment",
+                    base: event.target.value,
+                  });
+                }}
+                value={spell.increment.base}
+                label="Increment"
+              />
+            </Flex>
           </Stack>
         ) : null}
       </Stack>

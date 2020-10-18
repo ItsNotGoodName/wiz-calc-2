@@ -13,12 +13,12 @@ const App: React.FC = () => {
 
   return (
     <Box maxW="900px" mt="5px" mx="auto">
-      <Flex float="left" minW="250px" w="250px" mx="10px">
+      <Flex float="left" minW="200px" w="200px" mx="10px">
         <MainCard character={character} dispatch={setCharacter} />
       </Flex>
       <Flex wrap="wrap">
         {spells.map((value, index) => (
-          <Flex key={index} mb="auto" pb="10px" w="250px" mr="10px">
+          <Flex key={index} mb="auto" pb="10px" w="200px" mr="10px">
             <SpellCard character={character} />
           </Flex>
         ))}
