@@ -14,6 +14,9 @@ export type SpellActions =
       value: string;
     }
   | {
+      type: "add_base";
+    }
+  | {
       type: "update_character";
       value: CharacterType;
     }
@@ -55,6 +58,12 @@ const spellReducer = (state: SpellType, action: SpellActions): SpellType => {
   switch (action.type) {
     case "change_name": {
       return { ...state, name: action.name };
+    }
+    case "add_base": {
+      const newState = { ...state };
+      newState.bases.push(0);
+      newState.damages.push(0);
+      return newState;
     }
     case "change_base": {
       const newState = { ...state };

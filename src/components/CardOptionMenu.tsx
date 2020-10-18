@@ -14,6 +14,9 @@ export const CardOptionMenu: React.FC<CardOptionMenu> = ({ dispatch }) => {
         <BsThreeDotsVertical aria-label="spell-options" size="26px" />
       </MenuButton>
       <MenuList>
+        <MenuItem onClick={() => dispatch({ type: "add_base" })}>
+          Add Base
+        </MenuItem>
         <MenuItem onClick={() => dispatch({ type: "toggle_enchantment" })}>
           Toggle Enchantment
         </MenuItem>
