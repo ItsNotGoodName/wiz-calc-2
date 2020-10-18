@@ -6,7 +6,7 @@ import { CardHeader } from "./Card/CardHeader";
 import { CardItem } from "./Card/CardItem";
 import { CardWrapper } from "./Card/CardWrapper";
 import { LabelNumber } from "./LabelNumber";
-import { CharacterActions } from "./UseCharacter";
+import { CharacterActions } from "../hooks/UseCharacter";
 
 type MainCardProps = {
   character: CharacterType;

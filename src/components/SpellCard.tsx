@@ -7,7 +7,7 @@ import { CardItem } from "./Card/CardItem";
 import { CardWrapper } from "./Card/CardWrapper";
 import { LabelNumber } from "./LabelNumber";
 import { OptionMenu } from "./OptionMenu";
-import { useSpell } from "./UseSpell";
+import { useSpell } from "../hooks/UseSpell";
 
 type SpellCardProps = {
   character: CharacterType;

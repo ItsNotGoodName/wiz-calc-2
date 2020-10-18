@@ -5,7 +5,7 @@ import { CardWrapper } from "./components/Card/CardWrapper";
 import { MainCard } from "./components/MainCard";
 import { SpellCard } from "./components/SpellCard";
 import { ToolbarCard } from "./components/ToolBarCard";
-import { useCharacter } from "./components/UseCharacter";
+import { useCharacter } from "./hooks/UseCharacter";
 import { MAX_SPELLS } from "./constants";
 
 const App: React.FC = () => {

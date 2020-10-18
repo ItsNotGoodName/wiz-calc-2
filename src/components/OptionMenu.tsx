@@ -1,7 +1,7 @@
 import { Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/core";
 import React from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import { SpellActions } from "./UseSpell";
+import { SpellActions } from "../hooks/UseSpell";
 
 type OptionMenu = {
   dispatch: React.Dispatch<SpellActions>;
