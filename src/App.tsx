@@ -31,7 +31,7 @@ const App: React.FC = () => {
         borderColor={BORDER_COLOR}
       >
         <Heading color="gray.900" textAlign="center" size="xl">
-          Wiz Calc 2
+          Wiz Calculator 2
         </Heading>
       </Box>
       <Box>
@@ -40,7 +40,7 @@ const App: React.FC = () => {
         </Flex>
         <Flex wrap="wrap">
           {spellCards}
-          <Flex w="201px" mr="10px">
+          <Flex w="206px" mr="10px">
             {spells.length < MAX_SPELLS ? (
               <IconButton
                 variantColor="blue"
