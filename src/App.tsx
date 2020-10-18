@@ -4,6 +4,7 @@ import { MainCard } from "./components/MainCard";
 import { SpellCard } from "./components/SpellCard";
 import { useCharacter } from "./components/UseCharacter";
 import { v4 } from "uuid";
+import { MAX_SPELLS } from "./constants";
 
 const App: React.FC = () => {
   const [character, setCharacter] = useCharacter();
@@ -22,17 +23,19 @@ const App: React.FC = () => {
           </Flex>
         ))}
         <Flex minH="250px" w="250px" mr="10px">
-          <IconButton
-            variantColor="blue"
-            m="auto"
-            aria-label="Add Spellcard"
-            icon="add"
-            onClick={() => {
-              const newSpells = [...spells];
-              newSpells.push(v4());
-              setSpells(newSpells);
-            }}
-          />
+          {spells.length < MAX_SPELLS ? (
+            <IconButton
+              variantColor="blue"
+              m="auto"
+              aria-label="Add Spellcard"
+              icon="add"
+              onClick={() => {
+                const newSpells = [...spells];
+                newSpells.push(v4());
+                setSpells(newSpells);
+              }}
+            />
+          ) : null}
         </Flex>
       </Flex>
     </Box>

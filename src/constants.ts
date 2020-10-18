@@ -1,1 +1,1 @@
-export const MAX_SPELL_DAMAGE = 100000;
+export const MAX_SPELLS = 10;
