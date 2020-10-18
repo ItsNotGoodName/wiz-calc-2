@@ -25,21 +25,23 @@ export const MainCard: React.FC<MainCardProps> = ({ character, dispatch }) => {
       </Box>
       <Stack px="10px" spacing="5px" pb="5px">
         <LabelNumber
-          label="Percent Modifier"
           value={character.percentModifier}
           onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
             event.preventDefault();
             dispatch({ type: "change_percent", value: event.target.value });
           }}
-        />
+        >
+          Percent Modifier
+        </LabelNumber>
         <LabelNumber
-          label="Flat Damage"
           value={character.flatDamage}
           onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
             event.preventDefault();
             dispatch({ type: "change_flat", value: event.target.value });
           }}
-        />
+        >
+          Flat Damage
+        </LabelNumber>
       </Stack>
       <Box
         p="10px"

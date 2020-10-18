@@ -65,8 +65,9 @@ export const SpellCard: React.FC<SpellCardProps> = ({
               });
             }}
             value={spell.enchantment}
-            label="Enchantment"
-          />
+          >
+            Enchantment
+          </LabelNumber>
         </Box>
       ) : null}
       {spell.increment !== undefined ? (
@@ -86,8 +87,9 @@ export const SpellCard: React.FC<SpellCardProps> = ({
                   });
                 }}
                 value={spell.increment.pips}
-                label="Pips"
-              />
+              >
+                Pips
+              </LabelNumber>
             </Box>
             <LabelNumber
               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
@@ -97,8 +99,9 @@ export const SpellCard: React.FC<SpellCardProps> = ({
                 });
               }}
               value={spell.increment.base}
-              label="Increment"
-            />
+            >
+              Base
+            </LabelNumber>
           </Flex>
         </Stack>
       ) : null}
