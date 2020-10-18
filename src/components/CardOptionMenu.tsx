@@ -5,9 +5,15 @@ import { SpellActions } from "./UseSpell";
 
 type CardOptionMenu = {
   dispatch: React.Dispatch<SpellActions>;
+  id: string;
+  deleteSpell: (id: string) => void;
 };
 
-export const CardOptionMenu: React.FC<CardOptionMenu> = ({ dispatch }) => {
+export const CardOptionMenu: React.FC<CardOptionMenu> = ({
+  dispatch,
+  id,
+  deleteSpell,
+}) => {
   return (
     <Menu>
       <MenuButton>
@@ -23,7 +29,7 @@ export const CardOptionMenu: React.FC<CardOptionMenu> = ({ dispatch }) => {
         <MenuItem onClick={() => dispatch({ type: "toggle_increment" })}>
           Toggle Increment
         </MenuItem>
-        <MenuItem>Delete</MenuItem>
+        <MenuItem onClick={() => deleteSpell(id)}>Delete</MenuItem>
       </MenuList>
     </Menu>
   );

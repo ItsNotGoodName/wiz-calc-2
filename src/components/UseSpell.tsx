@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { v4 } from "uuid";
 import { CharacterType, SpellType } from "../types";
 import { calculateDamage } from "../utils/calculateDamage";
 import { parseNum } from "../utils/parseNum";

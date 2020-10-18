@@ -11,10 +11,24 @@ const App: React.FC = () => {
 
   const [spells, setSpells] = useState<string[]>([v4()]);
 
+  const deleteSpell = (id: string) => {
+    const index = spells.indexOf(id);
+    if (index !== -1) {
+      const newSpells = [];
+      for (let i = 0; i < spells.length; i++) {
+        if (index !== i) {
+          newSpells.push(spells[i]);
+        }
+      }
+
+      setSpells(newSpells);
+    }
+  };
+
   const spellCards = spells.map((value) => {
     return (
       <Flex key={value} mb="auto" pb="20px" w="206px" mr="20px">
-        <SpellCard id={value} character={character} />
+        <SpellCard id={value} deleteSpell={deleteSpell} character={character} />
       </Flex>
     );
   });

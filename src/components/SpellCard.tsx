@@ -9,9 +9,14 @@ import { useSpell } from "./UseSpell";
 type SpellCardProps = {
   character: CharacterType;
   id: string;
+  deleteSpell: (id: string) => void;
 };
 
-export const SpellCard: React.FC<SpellCardProps> = ({ character, id }) => {
+export const SpellCard: React.FC<SpellCardProps> = ({
+  character,
+  id,
+  deleteSpell,
+}) => {
   const [spell, dispatch] = useSpell({ character, id });
 
   return (
@@ -39,7 +44,11 @@ export const SpellCard: React.FC<SpellCardProps> = ({ character, id }) => {
               dispatch({ type: "change_name", name: event.target.value });
             }}
           />
-          <CardOptionMenu dispatch={dispatch} />
+          <CardOptionMenu
+            dispatch={dispatch}
+            deleteSpell={deleteSpell}
+            id={id}
+          />
         </Flex>
       </Box>
       <Stack>
