@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Stack, Textarea } from "@chakra-ui/core";
+import { Box, Button, Stack, Textarea } from "@chakra-ui/core";
 import React from "react";
 import { BORDER, BORDER_COLOR } from "../constants";
 import { CharacterType } from "../types";
