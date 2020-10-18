@@ -1,7 +1,8 @@
 {
-  "name": "wiz-calc2",
+  "name": "wiz-calc-2",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://itsnotgoodname.github.io/wiz-calc-2",
   "dependencies": {
     "@chakra-ui/core": "^0.8.0",
     "@emotion/core": "^10.0.35",
@@ -23,6 +24,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -43,6 +46,7 @@
     ]
   },
   "devDependencies": {
-    "@types/uuid": "^8.3.0"
+    "@types/uuid": "^8.3.0",
+    "gh-pages": "^3.1.0"
   }
 }
