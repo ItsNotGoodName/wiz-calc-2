@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { v4 } from "uuid";
 import { CharacterType, SpellType } from "../types";
 import { calculateDamage } from "../utils/calculateDamage";
 import { parseNum } from "../utils/parseNum";
@@ -132,6 +133,7 @@ const spellReducer = (state: SpellType, action: SpellActions): SpellType => {
 
 export const useSpell = ({ character }: { character: CharacterType }) => {
   const initState: SpellType = {
+    id: v4(),
     name: "Untitled",
     bases: [0],
     damages: [0],

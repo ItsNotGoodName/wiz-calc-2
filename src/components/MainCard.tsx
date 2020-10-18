@@ -58,7 +58,7 @@ export const MainCard: React.FC<MainCardProps> = ({ character, dispatch }) => {
       </Box>
       <Stack px="10px" pb="10px" pt="5px">
         <Textarea
-          height="200px"
+          height="212px"
           resize="vertical"
           placeholder="[percent] [name]"
           value={character.buffsRaw}

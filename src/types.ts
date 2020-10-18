@@ -5,6 +5,7 @@ export type CharacterType = {
   buffsRaw: string;
 };
 export type SpellType = {
+  id: string;
   name: string;
   bases: number[];
   damages: number[];
