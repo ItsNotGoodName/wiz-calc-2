@@ -20,7 +20,9 @@ export const CardOptionMenu: React.FC<CardOptionMenu> = ({ dispatch }) => {
         <MenuItem onClick={() => dispatch({ type: "toggle_enchantment" })}>
           Toggle Enchantment
         </MenuItem>
-        <MenuItem>Toggle Increment</MenuItem>
+        <MenuItem onClick={() => dispatch({ type: "toggle_increment" })}>
+          Toggle Increment
+        </MenuItem>
         <MenuItem>Delete</MenuItem>
       </MenuList>
     </Menu>

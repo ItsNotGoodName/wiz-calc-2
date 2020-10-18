@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import { MAX_SPELL_DAMAGE } from "../constants";
 import { CharacterType, SpellType } from "../types";
 import { calculateDamage } from "../utils/calculateDamage";
+import { parseNum } from "../utils/parseNum";
 
 export type SpellActions =
   | {
@@ -28,12 +28,12 @@ export type SpellActions =
       value: string;
     }
   | {
-      type: "add_increment";
+      type: "toggle_increment";
     }
   | {
       type: "change_increment";
-      pips: string;
-      base: string;
+      pips?: string;
+      base?: string;
     };
 
 const dpsCalcAll = (newState: SpellType) => {
@@ -67,16 +67,7 @@ const spellReducer = (state: SpellType, action: SpellActions): SpellType => {
     }
     case "change_base": {
       const newState = { ...state };
-
-      const value = parseInt(action.value);
-
-      if (!value) {
-        newState.bases[action.index] = 0;
-      } else if (value > MAX_SPELL_DAMAGE) {
-        newState.bases[action.index] = MAX_SPELL_DAMAGE;
-      } else {
-        newState.bases[action.index] = value;
-      }
+      newState.bases[action.index] = parseNum(action.value);
 
       dpsCalc(newState, action.index);
       return newState;
@@ -86,7 +77,6 @@ const spellReducer = (state: SpellType, action: SpellActions): SpellType => {
       newState.character = action.value;
 
       dpsCalcAll(newState);
-
       return newState;
     }
     case "toggle_enchantment": {
@@ -96,35 +86,41 @@ const spellReducer = (state: SpellType, action: SpellActions): SpellType => {
       } else {
         newState.enchantment = undefined;
       }
+
       dpsCalcAll(newState);
       return newState;
     }
     case "change_enchantment": {
       const newState = { ...state };
-      const value = parseInt(action.value);
-      if (!value) {
-        newState.enchantment = 0;
-      } else {
-        newState.enchantment = value;
-      }
+      newState.enchantment = parseNum(action.value);
+
       dpsCalcAll(newState);
       return newState;
     }
-    case "add_increment": {
+    case "toggle_increment": {
       const newState = { ...state };
-      newState.increment = {
-        base: 0,
-        pips: 0,
-      };
+      if (newState.increment === undefined) {
+        newState.increment = {
+          base: 0,
+          pips: 1,
+        };
+      } else {
+        newState.increment = undefined;
+      }
+
       dpsCalcAll(newState);
       return newState;
     }
     case "change_increment": {
       const newState = { ...state };
-      newState.increment = {
-        base: parseInt(action.base),
-        pips: parseInt(action.pips),
-      };
+      console.log(action);
+      if (action.base !== undefined) {
+        newState.increment!.base = parseNum(action.base);
+      }
+      if (action.pips !== undefined) {
+        newState.increment!.pips = parseNum(action.pips);
+      }
+
       dpsCalcAll(newState);
       return newState;
     }
@@ -136,7 +132,7 @@ const spellReducer = (state: SpellType, action: SpellActions): SpellType => {
 
 export const useSpell = ({ character }: { character: CharacterType }) => {
   const initState: SpellType = {
-    name: "",
+    name: "Untitled",
     bases: [0],
     damages: [0],
     character,

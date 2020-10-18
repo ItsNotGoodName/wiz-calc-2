@@ -45,8 +45,33 @@ export const SpellCard: React.FC<SpellCardProps> = ({ character }) => {
                 value: event.target.value,
               });
             }}
+            value={spell.enchantment}
             label="Enchantment"
           />
+        ) : null}
+        {spell.increment !== undefined ? (
+          <>
+            <LabelNumber
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                dispatch({
+                  type: "change_increment",
+                  pips: event.target.value,
+                });
+              }}
+              value={spell.increment.pips}
+              label="Pips"
+            />
+            <LabelNumber
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                dispatch({
+                  type: "change_increment",
+                  base: event.target.value,
+                });
+              }}
+              value={spell.increment.base}
+              label="Increment Base"
+            />
+          </>
         ) : null}
       </Stack>
       <Stack px="10px" pb="10px">

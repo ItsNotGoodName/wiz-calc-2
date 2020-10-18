@@ -1,6 +1,7 @@
 import React from "react";
 import { CharacterType } from "../types";
 import { parseBuffs } from "../utils/parseBuffs";
+import { parseNum } from "../utils/parseNum";
 
 export type CharacterActions =
   | { type: "change_percent"; value: string }
@@ -17,33 +18,18 @@ const characterReducer = (
   switch (action.type) {
     case "change_percent": {
       const newState = { ...state };
-      const value = parseInt(action.value);
-
-      if (!value) {
-        newState.percentModifier = 0;
-      } else {
-        newState.percentModifier = value;
-      }
-
+      newState.percentModifier = parseNum(action.value);
       return newState;
     }
     case "change_flat": {
       const newState = { ...state };
-      const value = parseInt(action.value);
-
-      if (!value) {
-        newState.flatDamage = 0;
-      } else {
-        newState.flatDamage = value;
-      }
+      newState.flatDamage = parseNum(action.value);
 
       return newState;
     }
     case "change_buffs": {
       const newState = { ...state };
-      const buffs = parseBuffs(action.value);
-
-      newState.buffs = buffs;
+      newState.buffs = parseBuffs(action.value);
       newState.buffsRaw = action.value;
 
       return newState;
