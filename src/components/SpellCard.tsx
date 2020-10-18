@@ -33,11 +33,21 @@ export const SpellCard: React.FC<SpellCardProps> = ({ character }) => {
               dispatch({ type: "change_name", name: event.target.value });
             }}
           />
-          <CardOptionMenu />
+          <CardOptionMenu dispatch={dispatch} />
         </Flex>
       </Box>
       <Stack pb="10px" px="10px" borderBottom="solid 2px" borderColor="#E2E8F0">
-        <LabelNumber label="Enchantment" />
+        {spell.enchantment !== undefined ? (
+          <LabelNumber
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+              dispatch({
+                type: "change_enchantment",
+                value: event.target.value,
+              });
+            }}
+            label="Enchantment"
+          />
+        ) : null}
       </Stack>
       <Stack px="10px" pb="10px">
         {spell.bases.map((value, index) => {

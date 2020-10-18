@@ -18,7 +18,7 @@ export type SpellActions =
       value: CharacterType;
     }
   | {
-      type: "add_enchantment";
+      type: "toggle_enchantment";
     }
   | {
       type: "change_enchantment";
@@ -32,6 +32,12 @@ export type SpellActions =
       pips: string;
       base: string;
     };
+
+const dpsCalcAll = (newState: SpellType) => {
+  for (let i = 0; i < newState.bases.length; i++) {
+    dpsCalc(newState, i);
+  }
+};
 
 const dpsCalc = (newState: SpellType, index: number) => {
   const enchantment = newState.enchantment ? newState.enchantment : 0;
@@ -70,20 +76,29 @@ const spellReducer = (state: SpellType, action: SpellActions): SpellType => {
       const newState = { ...state };
       newState.character = action.value;
 
-      for (let i = 0; i < newState.bases.length; i++) {
-        dpsCalc(newState, i);
-      }
+      dpsCalcAll(newState);
 
       return newState;
     }
-    case "add_enchantment": {
+    case "toggle_enchantment": {
       const newState = { ...state };
-      newState.enchantment = 0;
+      if (newState.enchantment === undefined) {
+        newState.enchantment = 0;
+      } else {
+        newState.enchantment = undefined;
+      }
+      dpsCalcAll(newState);
       return newState;
     }
     case "change_enchantment": {
       const newState = { ...state };
-      newState.enchantment = parseInt(action.value);
+      const value = parseInt(action.value);
+      if (!value) {
+        newState.enchantment = 0;
+      } else {
+        newState.enchantment = value;
+      }
+      dpsCalcAll(newState);
       return newState;
     }
     case "add_increment": {
@@ -92,6 +107,7 @@ const spellReducer = (state: SpellType, action: SpellActions): SpellType => {
         base: 0,
         pips: 0,
       };
+      dpsCalcAll(newState);
       return newState;
     }
     case "change_increment": {
@@ -100,6 +116,7 @@ const spellReducer = (state: SpellType, action: SpellActions): SpellType => {
         base: parseInt(action.base),
         pips: parseInt(action.pips),
       };
+      dpsCalcAll(newState);
       return newState;
     }
     default: {
