@@ -1,10 +1,10 @@
 import { Box, Flex, Heading, IconButton } from "@chakra-ui/core";
 import React, { useState } from "react";
+import { v4 } from "uuid";
 import { MainCard } from "./components/MainCard";
 import { SpellCard } from "./components/SpellCard";
 import { useCharacter } from "./components/UseCharacter";
-import { v4 } from "uuid";
-import { BORDER_COLOR, MAX_SPELLS } from "./constants";
+import { BORDER, BORDER_COLOR, MAX_SPELLS } from "./constants";
 
 const App: React.FC = () => {
   const [character, setCharacter] = useCharacter();
@@ -17,7 +17,7 @@ const App: React.FC = () => {
         m="10px"
         py="10px"
         boxShadow="md"
-        border="solid 2px"
+        border={BORDER}
         borderRadius="10px"
         borderColor={BORDER_COLOR}
       >
@@ -30,7 +30,7 @@ const App: React.FC = () => {
           <MainCard character={character} dispatch={setCharacter} />
         </Flex>
         <Flex wrap="wrap">
-          {spells.map((value, index) => (
+          {spells.map((_, index) => (
             <Flex key={index} mb="auto" pb="10px" w="213px" mr="10px">
               <SpellCard character={character} />
             </Flex>
