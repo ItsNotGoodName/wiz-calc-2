@@ -9,7 +9,7 @@ import { BORDER_COLOR, MAX_SPELLS } from "./constants";
 const App: React.FC = () => {
   const [character, setCharacter] = useCharacter();
 
-  const [spells, setSpells] = useState<string[]>([v4()]);
+  const [spells, setSpells] = useState<string[]>([v4(), v4(), v4()]);
 
   return (
     <Box maxW="900px" mx="auto">
@@ -26,16 +26,16 @@ const App: React.FC = () => {
         </Heading>
       </Box>
       <Box>
-        <Flex float="left" minW="200px" w="200px" mx="10px">
+        <Flex float="left" minW="210px" w="200px" mx="10px">
           <MainCard character={character} dispatch={setCharacter} />
         </Flex>
         <Flex wrap="wrap">
           {spells.map((value, index) => (
-            <Flex key={index} mb="auto" pb="10px" w="233px" mr="10px">
+            <Flex key={index} mb="auto" pb="10px" w="213px" mr="10px">
               <SpellCard character={character} />
             </Flex>
           ))}
-          <Flex w="233px" mr="10px">
+          <Flex w="223px" mr="10px">
             {spells.length < MAX_SPELLS ? (
               <IconButton
                 variantColor="blue"
