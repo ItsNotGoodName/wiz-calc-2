@@ -131,9 +131,15 @@ const spellReducer = (state: SpellType, action: SpellActions): SpellType => {
   }
 };
 
-export const useSpell = ({ character }: { character: CharacterType }) => {
+export const useSpell = ({
+  character,
+  id,
+}: {
+  character: CharacterType;
+  id: string;
+}) => {
   const initState: SpellType = {
-    id: v4(),
+    id,
     name: "Untitled",
     bases: [0],
     damages: [0],

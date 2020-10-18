@@ -11,10 +11,10 @@ const App: React.FC = () => {
 
   const [spells, setSpells] = useState<string[]>([v4()]);
 
-  const spellCards = spells.map((value, index) => {
+  const spellCards = spells.map((value) => {
     return (
-      <Flex key={index} mb="auto" pb="20px" w="206px" mr="20px">
-        <SpellCard character={character} />
+      <Flex key={value} mb="auto" pb="20px" w="206px" mr="20px">
+        <SpellCard id={value} character={character} />
       </Flex>
     );
   });

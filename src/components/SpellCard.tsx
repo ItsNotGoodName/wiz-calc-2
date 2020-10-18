@@ -8,10 +8,11 @@ import { useSpell } from "./UseSpell";
 
 type SpellCardProps = {
   character: CharacterType;
+  id: string;
 };
 
-export const SpellCard: React.FC<SpellCardProps> = ({ character }) => {
-  const [spell, dispatch] = useSpell({ character });
+export const SpellCard: React.FC<SpellCardProps> = ({ character, id }) => {
+  const [spell, dispatch] = useSpell({ character, id });
 
   return (
     <Stack
