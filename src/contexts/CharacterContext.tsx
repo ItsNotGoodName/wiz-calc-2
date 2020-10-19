@@ -6,7 +6,7 @@ import {
 import { CharacterType } from "../types";
 
 //@ts-ignore
-export const SpellsContext = createContext<{
+export const CharacterContext = createContext<{
   character: CharacterType;
   dispatch: React.Dispatch<CharacterActions>;
 }>();
@@ -24,8 +24,8 @@ export const CharacterContextProvider: React.FC = ({ children }) => {
   const [character, dispatch] = useReducer(characterReducer, initState);
 
   return (
-    <SpellsContext.Provider value={{ character, dispatch }}>
+    <CharacterContext.Provider value={{ character, dispatch }}>
       {children}
-    </SpellsContext.Provider>
+    </CharacterContext.Provider>
   );
 };
