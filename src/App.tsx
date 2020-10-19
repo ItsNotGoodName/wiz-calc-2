@@ -23,7 +23,7 @@ const App: React.FC = () => {
       character,
     };
     return (
-      <Flex key={value} mb="20px" w="206px" mr="20px">
+      <Flex key={value} mb="auto" pb="20px" w="206px" mr="20px">
         <SpellCard initSpell={initState} />
       </Flex>
     );
