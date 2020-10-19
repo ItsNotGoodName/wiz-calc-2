@@ -5,22 +5,22 @@ import {
 } from "../reducers/characterReducers";
 import { CharacterType } from "../types";
 
-//@ts-ignore
+const initState: CharacterType = {
+  percentModifier: 0,
+  flatDamage: 0,
+  pierce: 0,
+  buffs: [],
+  buffsRaw: "",
+  shields: [],
+  sheldsRaw: "",
+};
+
 export const CharacterContext = createContext<{
   character: CharacterType;
   dispatch: React.Dispatch<CharacterActions>;
-}>();
+}>({ character: initState, dispatch: () => null });
 
 export const CharacterContextProvider: React.FC = ({ children }) => {
-  const initState: CharacterType = {
-    percentModifier: 0,
-    flatDamage: 0,
-    pierce: 0,
-    buffs: [],
-    buffsRaw: "",
-    shields: [],
-    sheldsRaw: "",
-  };
   const [character, dispatch] = useReducer(characterReducer, initState);
 
   return (

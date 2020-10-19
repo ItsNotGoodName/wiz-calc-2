@@ -6,12 +6,11 @@ import { SpellCard } from "./components/SpellCard";
 import { ToolbarCard } from "./components/ToolBarCard";
 import { MAX_SPELLS } from "./constants";
 import { SpellsContext } from "./contexts/SpellsContext";
-import { SpellType } from "./types";
 
 const App: React.FC = () => {
   const { spells, dispatch } = useContext(SpellsContext);
 
-  const spellCards = spells.map((value: SpellType, index: number) => {
+  const spellCards = spells.map((value, index) => {
     return (
       <Flex key={value.id} mb="auto" pb="20px" w="206px" mr="20px">
         <SpellCard index={index} />

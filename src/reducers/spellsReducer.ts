@@ -8,6 +8,11 @@ export type SpellsAction =
   | {
       type: "delete_spell";
       id: string;
+    }
+  | {
+      type: "update_spell";
+      index: number;
+      spell: SpellType;
     };
 export const spellsReducer = (
   state: SpellType[],
@@ -25,6 +30,12 @@ export const spellsReducer = (
           newState.push(state[i]);
         }
       }
+
+      return newState;
+    }
+    case "update_spell": {
+      const newState = [...state];
+      newState[action.index] = action.spell;
 
       return newState;
     }

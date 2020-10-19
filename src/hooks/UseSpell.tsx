@@ -1,7 +1,6 @@
-import React, { useContext, useEffect } from "react";
-import { CharacterContext } from "../contexts/CharacterContext";
+import React from "react";
 import { CharacterType, SpellType } from "../types";
-import { calculateAllSpell, calculateSpell, parseNum } from "../utils";
+import { parseNum } from "../utils";
 
 export type SpellActions =
   | {
@@ -120,12 +119,6 @@ const spellReducer = (state: SpellType, action: SpellActions): SpellType => {
 
 export const useSpell = (spell: SpellType) => {
   const hook = React.useReducer(spellReducer, spell);
-  // Update character when it changes
-  const { character } = useContext(CharacterContext);
-  const [, dispatch] = hook;
-  useEffect(() => {
-    dispatch({ type: "update_character", value: character });
-  }, [character, dispatch]);
 
   return hook;
 };

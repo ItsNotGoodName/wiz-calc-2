@@ -15,7 +15,8 @@ type SpellCardProps = {
 
 export const SpellCard: React.FC<SpellCardProps> = ({ index }) => {
   const { spells } = useContext(SpellsContext);
-  const [spell, dispatch] = useSpell(spells[index]);
+  const [, dispatch] = useSpell(spells[index]);
+  const spell = spells[index];
 
   return (
     <CardWrapper>
