@@ -5,15 +5,9 @@ import { SpellActions } from "../hooks/UseSpell";
 
 type OptionMenu = {
   dispatch: React.Dispatch<SpellActions>;
-  id: string;
-  deleteSpell: (id: string) => void;
 };
 
-export const OptionMenu: React.FC<OptionMenu> = ({
-  dispatch,
-  id,
-  deleteSpell,
-}) => {
+export const OptionMenu: React.FC<OptionMenu> = ({ dispatch }) => {
   return (
     <Menu>
       <MenuButton>
@@ -29,7 +23,9 @@ export const OptionMenu: React.FC<OptionMenu> = ({
         <MenuItem onClick={() => dispatch({ type: "toggle_increment" })}>
           Toggle Increment
         </MenuItem>
-        <MenuItem onClick={() => deleteSpell(id)}>Delete</MenuItem>
+        <MenuItem onClick={() => dispatch({ type: "delete_spell" })}>
+          Delete
+        </MenuItem>
       </MenuList>
     </Menu>
   );

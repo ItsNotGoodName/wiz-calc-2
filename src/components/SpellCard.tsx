@@ -1,26 +1,20 @@
 import { Box, Flex, Input, Text } from "@chakra-ui/core";
 import React from "react";
-import { CharacterType } from "../types";
+import { useSpell } from "../hooks/UseSpell";
+import { SpellType } from "../types";
 import { CardFooter } from "./Card/CardFooter";
 import { CardHeader } from "./Card/CardHeader";
 import { CardItem } from "./Card/CardItem";
 import { CardWrapper } from "./Card/CardWrapper";
 import { LabelNumber } from "./LabelNumber";
 import { OptionMenu } from "./OptionMenu";
-import { useSpell } from "../hooks/UseSpell";
 
 type SpellCardProps = {
-  character: CharacterType;
-  id: string;
-  deleteSpell: (id: string) => void;
+  initSpell: SpellType;
 };
 
-export const SpellCard: React.FC<SpellCardProps> = ({
-  character,
-  id,
-  deleteSpell,
-}) => {
-  const [spell, dispatch] = useSpell({ character, id });
+export const SpellCard: React.FC<SpellCardProps> = ({ initSpell }) => {
+  const [spell, dispatch] = useSpell(initSpell);
 
   return (
     <CardWrapper>
@@ -44,7 +38,7 @@ export const SpellCard: React.FC<SpellCardProps> = ({
             />
           </Flex>
           <Flex>
-            <OptionMenu dispatch={dispatch} deleteSpell={deleteSpell} id={id} />
+            <OptionMenu dispatch={dispatch} />
           </Flex>
         </Flex>
       </CardHeader>

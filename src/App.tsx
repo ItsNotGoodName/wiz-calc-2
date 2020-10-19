@@ -5,32 +5,26 @@ import { CardWrapper } from "./components/Card/CardWrapper";
 import { MainCard } from "./components/MainCard";
 import { SpellCard } from "./components/SpellCard";
 import { ToolbarCard } from "./components/ToolBarCard";
-import { useCharacter } from "./hooks/UseCharacter";
 import { MAX_SPELLS } from "./constants";
+import { useCharacter } from "./hooks/UseCharacter";
+import { SpellType } from "./types";
 
 const App: React.FC = () => {
   const [character, setCharacter] = useCharacter();
 
   const [spells, setSpells] = useState<string[]>([v4()]);
 
-  const deleteSpell = (id: string) => {
-    const index = spells.indexOf(id);
-    if (index !== -1) {
-      const newSpells = [];
-      for (let i = 0; i < spells.length; i++) {
-        if (index !== i) {
-          newSpells.push(spells[i]);
-        }
-      }
-
-      setSpells(newSpells);
-    }
-  };
-
   const spellCards = spells.map((value) => {
+    const initState: SpellType = {
+      id: value,
+      name: "Untitled",
+      bases: [0],
+      damages: [0],
+      character,
+    };
     return (
       <Flex key={value} mb="auto" pb="20px" w="206px" mr="20px">
-        <SpellCard id={value} deleteSpell={deleteSpell} character={character} />
+        <SpellCard initSpell={initState} />
       </Flex>
     );
   });

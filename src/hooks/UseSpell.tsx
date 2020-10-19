@@ -33,6 +33,9 @@ export type SpellActions =
       type: "change_increment";
       pips?: string;
       base?: string;
+    }
+  | {
+      type: "delete_spell";
     };
 
 const spellReducer = (state: SpellType, action: SpellActions): SpellType => {
@@ -105,33 +108,24 @@ const spellReducer = (state: SpellType, action: SpellActions): SpellType => {
       calculateAllSpell(newState);
       return newState;
     }
+    case "delete_spell": {
+      return state;
+    }
     default: {
       throw new Error("Error");
     }
   }
 };
 
-export const useSpell = ({
-  character,
-  id,
-}: {
-  character: CharacterType;
-  id: string;
-}) => {
-  const initState: SpellType = {
-    id,
-    name: "Untitled",
-    bases: [0],
-    damages: [0],
-    character,
-  };
-  const hook = React.useReducer(spellReducer, initState);
+export const useSpell = (spell: SpellType) => {
+  const hook = React.useReducer(spellReducer, spell);
 
   // Update character when it changes
   const [, dispatch] = hook;
   useEffect(() => {
-    dispatch({ type: "update_character", value: character });
-  }, [character, dispatch]);
+    console.log("Changed");
+    dispatch({ type: "update_character", value: spell.character });
+  }, [spell.character, dispatch]);
 
   return hook;
 };
