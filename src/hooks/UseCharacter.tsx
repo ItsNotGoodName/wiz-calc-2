@@ -1,7 +1,6 @@
 import React from "react";
 import { CharacterType } from "../types";
-import { parseBuffs } from "../utils/parseBuffs";
-import { parseNum } from "../utils/parseNum";
+import { parseBuffs, parseNum } from "../utils";
 
 export type CharacterActions =
   | { type: "change_percent"; value: string }

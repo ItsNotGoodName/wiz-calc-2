@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { CharacterType, SpellType } from "../types";
-import { calculateDamage } from "../utils/calculateDamage";
-import { parseNum } from "../utils/parseNum";
+import { calculateAllSpell, calculateSpell, parseNum } from "../utils";
 
 export type SpellActions =
   | {
@@ -36,24 +35,6 @@ export type SpellActions =
       base?: string;
     };
 
-const dpsCalcAll = (newState: SpellType) => {
-  for (let i = 0; i < newState.bases.length; i++) {
-    dpsCalc(newState, i);
-  }
-};
-
-const dpsCalc = (newState: SpellType, index: number) => {
-  const enchantment = newState.enchantment ? newState.enchantment : 0;
-  const increment = newState.increment
-    ? newState.increment.base * newState.increment.pips
-    : 0;
-  newState.damages[index] = calculateDamage(
-    newState.character,
-    newState.bases[index] + enchantment + increment
-  );
-  return newState;
-};
-
 const spellReducer = (state: SpellType, action: SpellActions): SpellType => {
   switch (action.type) {
     case "change_name": {
@@ -69,14 +50,14 @@ const spellReducer = (state: SpellType, action: SpellActions): SpellType => {
       const newState = { ...state };
       newState.bases[action.index] = parseNum(action.value);
 
-      dpsCalc(newState, action.index);
+      calculateSpell(newState, action.index);
       return newState;
     }
     case "update_character": {
       const newState = { ...state };
       newState.character = action.value;
 
-      dpsCalcAll(newState);
+      calculateAllSpell(newState);
       return newState;
     }
     case "toggle_enchantment": {
@@ -87,14 +68,14 @@ const spellReducer = (state: SpellType, action: SpellActions): SpellType => {
         newState.enchantment = undefined;
       }
 
-      dpsCalcAll(newState);
+      calculateAllSpell(newState);
       return newState;
     }
     case "change_enchantment": {
       const newState = { ...state };
       newState.enchantment = parseNum(action.value);
 
-      dpsCalcAll(newState);
+      calculateAllSpell(newState);
       return newState;
     }
     case "toggle_increment": {
@@ -108,7 +89,7 @@ const spellReducer = (state: SpellType, action: SpellActions): SpellType => {
         newState.increment = undefined;
       }
 
-      dpsCalcAll(newState);
+      calculateAllSpell(newState);
       return newState;
     }
     case "change_increment": {
@@ -121,7 +102,7 @@ const spellReducer = (state: SpellType, action: SpellActions): SpellType => {
         newState.increment!.pips = parseNum(action.pips);
       }
 
-      dpsCalcAll(newState);
+      calculateAllSpell(newState);
       return newState;
     }
     default: {
