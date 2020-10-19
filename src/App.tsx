@@ -1,18 +1,17 @@
 import { Box, Flex, Heading, IconButton } from "@chakra-ui/core";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { CharacterContext } from "./contexts/CharacterContext";
 import { v4 } from "uuid";
 import { CardWrapper } from "./components/Card/CardWrapper";
 import { MainCard } from "./components/MainCard";
 import { SpellCard } from "./components/SpellCard";
 import { ToolbarCard } from "./components/ToolBarCard";
 import { MAX_SPELLS } from "./constants";
-import { useCharacter } from "./hooks/UseCharacter";
 import { SpellType } from "./types";
 
 const App: React.FC = () => {
-  const [character, setCharacter] = useCharacter();
-
   const [spells, setSpells] = useState<string[]>([v4()]);
+  const { character } = useContext(CharacterContext);
 
   const spellCards = spells.map((value) => {
     const initState: SpellType = {
@@ -39,7 +38,7 @@ const App: React.FC = () => {
       <Box>
         <Box float="left" minW="181px" w="181px" mr="20px">
           <Box mb="20px">
-            <MainCard character={character} dispatch={setCharacter} />
+            <MainCard />
           </Box>
           <ToolbarCard />
         </Box>

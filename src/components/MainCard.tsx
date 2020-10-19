@@ -1,19 +1,16 @@
 import { Button, Text, Textarea } from "@chakra-ui/core";
-import React from "react";
-import { CharacterType } from "../types";
+import React, { useContext } from "react";
+import { CharacterContext } from "../contexts/CharacterContext";
 import { CardFooter } from "./Card/CardFooter";
 import { CardHeader } from "./Card/CardHeader";
 import { CardItem } from "./Card/CardItem";
 import { CardWrapper } from "./Card/CardWrapper";
 import { LabelNumber } from "./LabelNumber";
-import { CharacterActions } from "../hooks/UseCharacter";
 
-type MainCardProps = {
-  character: CharacterType;
-  dispatch: React.Dispatch<CharacterActions>;
-};
+type MainCardProps = {};
 
-export const MainCard: React.FC<MainCardProps> = ({ character, dispatch }) => {
+export const MainCard: React.FC<MainCardProps> = () => {
+  const { character, dispatch } = useContext(CharacterContext);
   return (
     <CardWrapper>
       <CardHeader>
