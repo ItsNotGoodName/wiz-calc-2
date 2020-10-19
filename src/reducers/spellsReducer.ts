@@ -1,5 +1,5 @@
 import { SpellType } from "../types";
-import { newSpell } from "../utils";
+import { createSpell } from "../utils";
 
 export type SpellsAction =
   | {
@@ -15,7 +15,7 @@ export const spellsReducer = (
 ): SpellType[] => {
   switch (action.type) {
     case "add_spell": {
-      return [...state, newSpell()];
+      return [...state, createSpell()];
     }
     case "delete_spell": {
       const newState = [];

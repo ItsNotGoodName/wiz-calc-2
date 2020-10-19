@@ -1,29 +1,20 @@
 import { Box, Flex, Heading, IconButton } from "@chakra-ui/core";
-import React, { useContext, useState } from "react";
-import { CharacterContext } from "./contexts/CharacterContext";
-import { v4 } from "uuid";
+import React, { useContext } from "react";
 import { CardWrapper } from "./components/Card/CardWrapper";
 import { MainCard } from "./components/MainCard";
 import { SpellCard } from "./components/SpellCard";
 import { ToolbarCard } from "./components/ToolBarCard";
 import { MAX_SPELLS } from "./constants";
+import { SpellsContext } from "./contexts/SpellsContext";
 import { SpellType } from "./types";
 
 const App: React.FC = () => {
-  const [spells, setSpells] = useState<string[]>([v4()]);
-  const { character } = useContext(CharacterContext);
+  const { spells, dispatch } = useContext(SpellsContext);
 
-  const spellCards = spells.map((value) => {
-    const initState: SpellType = {
-      id: value,
-      name: "Untitled",
-      bases: [0],
-      damages: [0],
-      character,
-    };
+  const spellCards = spells.map((value: SpellType, index: number) => {
     return (
-      <Flex key={value} mb="auto" pb="20px" w="206px" mr="20px">
-        <SpellCard initSpell={initState} />
+      <Flex key={value.id} mb="auto" pb="20px" w="206px" mr="20px">
+        <SpellCard index={index} />
       </Flex>
     );
   });
@@ -53,9 +44,7 @@ const App: React.FC = () => {
                 aria-label="Add Spellcard"
                 icon="add"
                 onClick={() => {
-                  const newSpells = [...spells];
-                  newSpells.push(v4());
-                  setSpells(newSpells);
+                  dispatch({ type: "add_spell" });
                 }}
               />
             ) : null}

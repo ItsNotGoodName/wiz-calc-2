@@ -12,7 +12,6 @@ export type SpellType = {
   name: string;
   bases: number[];
   damages: number[];
-  character: CharacterType;
   enchantment?: number;
   increment?: {
     base: number;

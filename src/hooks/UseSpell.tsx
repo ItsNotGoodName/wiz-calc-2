@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
+import { CharacterContext } from "../contexts/CharacterContext";
 import { CharacterType, SpellType } from "../types";
 import { calculateAllSpell, calculateSpell, parseNum } from "../utils";
 
@@ -53,14 +54,14 @@ const spellReducer = (state: SpellType, action: SpellActions): SpellType => {
       const newState = { ...state };
       newState.bases[action.index] = parseNum(action.value);
 
-      calculateSpell(newState, action.index);
+      // calculateSpell(newState, action.index);
       return newState;
     }
     case "update_character": {
       const newState = { ...state };
-      newState.character = action.value;
+      // newState.character = action.value;
 
-      calculateAllSpell(newState);
+      // calculateAllSpell(newState);
       return newState;
     }
     case "toggle_enchantment": {
@@ -71,14 +72,14 @@ const spellReducer = (state: SpellType, action: SpellActions): SpellType => {
         newState.enchantment = undefined;
       }
 
-      calculateAllSpell(newState);
+      // calculateAllSpell(newState);
       return newState;
     }
     case "change_enchantment": {
       const newState = { ...state };
       newState.enchantment = parseNum(action.value);
 
-      calculateAllSpell(newState);
+      // calculateAllSpell(newState);
       return newState;
     }
     case "toggle_increment": {
@@ -92,7 +93,7 @@ const spellReducer = (state: SpellType, action: SpellActions): SpellType => {
         newState.increment = undefined;
       }
 
-      calculateAllSpell(newState);
+      // calculateAllSpell(newState);
       return newState;
     }
     case "change_increment": {
@@ -105,7 +106,7 @@ const spellReducer = (state: SpellType, action: SpellActions): SpellType => {
         newState.increment!.pips = parseNum(action.pips);
       }
 
-      calculateAllSpell(newState);
+      // calculateAllSpell(newState);
       return newState;
     }
     case "delete_spell": {
@@ -119,12 +120,12 @@ const spellReducer = (state: SpellType, action: SpellActions): SpellType => {
 
 export const useSpell = (spell: SpellType) => {
   const hook = React.useReducer(spellReducer, spell);
-
   // Update character when it changes
+  const { character } = useContext(CharacterContext);
   const [, dispatch] = hook;
   useEffect(() => {
-    dispatch({ type: "update_character", value: spell.character });
-  }, [spell.character, dispatch]);
+    dispatch({ type: "update_character", value: character });
+  }, [character, dispatch]);
 
   return hook;
 };

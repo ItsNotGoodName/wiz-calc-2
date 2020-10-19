@@ -17,19 +17,26 @@ export const parseNum = (num: string) => {
   return value ? value : 0;
 };
 
-export const calculateAllSpell = (newState: SpellType) => {
+export const calculateAllSpell = (
+  newState: SpellType,
+  character: CharacterType
+) => {
   for (let i = 0; i < newState.bases.length; i++) {
-    calculateSpell(newState, i);
+    calculateSpell(newState, character, i);
   }
 };
 
-export const calculateSpell = (newState: SpellType, index: number) => {
+export const calculateSpell = (
+  newState: SpellType,
+  character: CharacterType,
+  index: number
+) => {
   const enchantment = newState.enchantment ? newState.enchantment : 0;
   const increment = newState.increment
     ? newState.increment.base * newState.increment.pips
     : 0;
   newState.damages[index] = calculateDamage(
-    newState.character,
+    character,
     newState.bases[index] + enchantment + increment
   );
   return newState;
@@ -47,18 +54,9 @@ export const calculateDamage = (character: CharacterType, base: number) => {
   return dam;
 };
 
-export const newSpell = (): SpellType => ({
+export const createSpell = (): SpellType => ({
   id: v4(),
   name: "Untitled",
   bases: [0],
   damages: [0],
-  character: {
-    percentModifier: 0,
-    flatDamage: 0,
-    pierce: 0,
-    buffs: [],
-    buffsRaw: "",
-    shields: [],
-    sheldsRaw: "",
-  },
 });
