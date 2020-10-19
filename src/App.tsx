@@ -23,7 +23,7 @@ const App: React.FC = () => {
       character,
     };
     return (
-      <Flex key={value} mb="auto" pb="20px" w="206px" mr="20px">
+      <Flex key={value} mb="20px" w="206px" mr="20px">
         <SpellCard initSpell={initState} />
       </Flex>
     );
@@ -45,13 +45,12 @@ const App: React.FC = () => {
         </Box>
         <Flex wrap="wrap">
           {spellCards}
-          <Flex w="216px" mr="10px">
+          <Flex pb="20px" w="216px" mr="10px">
             {spells.length < MAX_SPELLS ? (
               <IconButton
                 variantColor="blue"
                 boxShadow="md"
-                mx="auto"
-                mt="25px"
+                m="auto"
                 aria-label="Add Spellcard"
                 icon="add"
                 onClick={() => {

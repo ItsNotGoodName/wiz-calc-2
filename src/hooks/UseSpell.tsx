@@ -123,7 +123,6 @@ export const useSpell = (spell: SpellType) => {
   // Update character when it changes
   const [, dispatch] = hook;
   useEffect(() => {
-    console.log("Changed");
     dispatch({ type: "update_character", value: spell.character });
   }, [spell.character, dispatch]);
 
