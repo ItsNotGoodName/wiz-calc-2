@@ -4,12 +4,18 @@ import App from "./App";
 import { CSSReset, ThemeProvider } from "@chakra-ui/core";
 import * as serviceWorker from "./serviceWorker";
 import customTheme from "./theme";
+import { SpellsContextProvider } from "./contexts/SpellsContext";
+import { CharacterContextProvider } from "./contexts/CharacterContext";
 
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={customTheme}>
       <CSSReset />
-      <App />
+      <CharacterContextProvider>
+        <SpellsContextProvider>
+          <App />
+        </SpellsContextProvider>
+      </CharacterContextProvider>
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById("root")

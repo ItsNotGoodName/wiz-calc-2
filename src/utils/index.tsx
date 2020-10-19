@@ -1,3 +1,4 @@
+import { v4 } from "uuid";
 import { CharacterType, SpellType } from "../types";
 
 export const parseBuffs = (text: string) => {
@@ -45,3 +46,19 @@ export const calculateDamage = (character: CharacterType, base: number) => {
   }
   return dam;
 };
+
+export const newSpell = (): SpellType => ({
+  id: v4(),
+  name: "Untitled",
+  bases: [0],
+  damages: [0],
+  character: {
+    percentModifier: 0,
+    flatDamage: 0,
+    pierce: 0,
+    buffs: [],
+    buffsRaw: "",
+    shields: [],
+    sheldsRaw: "",
+  },
+});
