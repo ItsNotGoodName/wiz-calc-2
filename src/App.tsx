@@ -30,7 +30,6 @@ const App: React.FC = () => {
           <Box mb="20px">
             <MainCard />
           </Box>
-          <ToolbarCard />
         </Box>
         <Flex wrap="wrap">
           {spellCards}
