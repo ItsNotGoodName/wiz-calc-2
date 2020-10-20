@@ -7,6 +7,10 @@ export type CharacterActions =
   | {
       type: "change_buffs";
       value: string;
+    }
+  | {
+      type: "load";
+      character: CharacterType;
     };
 
 export const characterReducer = (
@@ -31,6 +35,9 @@ export const characterReducer = (
       newState.buffsRaw = action.value;
 
       return newState;
+    }
+    case "load": {
+      return action.character;
     }
     default: {
       throw new Error("Error");
