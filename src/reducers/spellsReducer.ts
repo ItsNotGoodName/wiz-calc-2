@@ -13,7 +13,12 @@ export type SpellsAction =
       type: "update_spell";
       spell: SpellType;
       index: number;
+    }
+  | {
+      type: "load";
+      spells: SpellType[];
     };
+
 export const spellsReducer = (
   state: SpellType[],
   action: SpellsAction
@@ -38,6 +43,9 @@ export const spellsReducer = (
       newState[action.index] = action.spell;
 
       return newState;
+    }
+    case "load": {
+      return action.spells;
     }
     default: {
       throw new Error("Error");

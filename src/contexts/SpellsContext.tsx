@@ -9,9 +9,20 @@ export const SpellsContext = createContext<{
 
 export const SpellsContextProvider: React.FC = ({ children }) => {
   const [spells, dispatch] = useReducer(spellsReducer, []);
+
+  // Load spells from storage
   useEffect(() => {
-    dispatch({ type: "add_spell" });
+    const spells_raw = localStorage.getItem("spells");
+    if (spells_raw) {
+      const spells_parsed: SpellType[] = JSON.parse(spells_raw);
+      dispatch({ type: "load", spells: spells_parsed });
+    }
   }, []);
+
+  // Save spells to storage
+  useEffect(() => {
+    localStorage.setItem("spells", JSON.stringify(spells));
+  }, [spells]);
 
   return (
     <SpellsContext.Provider value={{ spells, dispatch }}>
