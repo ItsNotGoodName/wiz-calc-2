@@ -3,7 +3,6 @@ import React, { useContext } from "react";
 import { CardWrapper } from "./components/Card/CardWrapper";
 import { MainCard } from "./components/MainCard";
 import { SpellCard } from "./components/SpellCard";
-import { ToolbarCard } from "./components/ToolBarCard";
 import { MAX_SPELLS } from "./constants";
 import { SpellsContext } from "./contexts/SpellsContext";
 
