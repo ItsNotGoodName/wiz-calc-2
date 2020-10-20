@@ -1,5 +1,6 @@
-import { Box, Flex, Input, Text } from "@chakra-ui/core";
-import React from "react";
+import { Box, Button, Flex, Input, Text } from "@chakra-ui/core";
+import React, { useState } from "react";
+import { AiFillCloseSquare, AiOutlineEdit } from "react-icons/ai";
 import { useSpell } from "../hooks/UseSpell";
 import { SpellType } from "../types";
 import { CardFooter } from "./Card/CardFooter";
@@ -7,7 +8,6 @@ import { CardHeader } from "./Card/CardHeader";
 import { CardItem } from "./Card/CardItem";
 import { CardWrapper } from "./Card/CardWrapper";
 import { LabelNumber } from "./LabelNumber";
-import { OptionMenu } from "./OptionMenu";
 
 type SpellCardProps = {
   spell: SpellType;
@@ -16,6 +16,7 @@ type SpellCardProps = {
 
 export const SpellCard: React.FC<SpellCardProps> = ({ spell, index }) => {
   const dispatch = useSpell(spell, index);
+  const [editmode, setEditmode] = useState(false);
 
   return (
     <CardWrapper>
@@ -39,7 +40,23 @@ export const SpellCard: React.FC<SpellCardProps> = ({ spell, index }) => {
             />
           </Flex>
           <Flex>
-            <OptionMenu dispatch={dispatch} />
+            {editmode && (
+              <Button
+                onClick={() => dispatch({ type: "delete_spell" })}
+                variant="ghost"
+                px="0px"
+                mr="5px"
+              >
+                <AiFillCloseSquare color="red" aria-label="edit" size="24px" />
+              </Button>
+            )}
+            <Button
+              onClick={() => setEditmode(!editmode)}
+              variant="ghost"
+              px="0px"
+            >
+              <AiOutlineEdit aria-label="edit" />
+            </Button>
           </Flex>
         </Flex>
       </CardHeader>
