@@ -1,30 +1,18 @@
 import { Box, Flex, Heading, IconButton } from "@chakra-ui/core";
-import React, { useState } from "react";
-import { v4 } from "uuid";
+import React, { useContext } from "react";
 import { CardWrapper } from "./components/Card/CardWrapper";
 import { MainCard } from "./components/MainCard";
 import { SpellCard } from "./components/SpellCard";
-import { ToolbarCard } from "./components/ToolBarCard";
 import { MAX_SPELLS } from "./constants";
-import { useCharacter } from "./hooks/UseCharacter";
-import { SpellType } from "./types";
+import { SpellsContext } from "./contexts/SpellsContext";
 
 const App: React.FC = () => {
-  const [character, setCharacter] = useCharacter();
+  const { spells, dispatch } = useContext(SpellsContext);
 
-  const [spells, setSpells] = useState<string[]>([v4()]);
-
-  const spellCards = spells.map((value) => {
-    const initState: SpellType = {
-      id: value,
-      name: "Untitled",
-      bases: [0],
-      damages: [0],
-      character,
-    };
+  const spellCards = spells.map((value, index) => {
     return (
-      <Flex key={value} mb="auto" pb="20px" w="206px" mr="20px">
-        <SpellCard initSpell={initState} />
+      <Flex key={value.id} mb="auto" pb="20px" w="206px" mr="20px">
+        <SpellCard spell={value} index={index} />
       </Flex>
     );
   });
@@ -39,9 +27,8 @@ const App: React.FC = () => {
       <Box>
         <Box float="left" minW="181px" w="181px" mr="20px">
           <Box mb="20px">
-            <MainCard character={character} dispatch={setCharacter} />
+            <MainCard />
           </Box>
-          <ToolbarCard />
         </Box>
         <Flex wrap="wrap">
           {spellCards}
@@ -54,9 +41,7 @@ const App: React.FC = () => {
                 aria-label="Add Spellcard"
                 icon="add"
                 onClick={() => {
-                  const newSpells = [...spells];
-                  newSpells.push(v4());
-                  setSpells(newSpells);
+                  dispatch({ type: "add_spell" });
                 }}
               />
             ) : null}

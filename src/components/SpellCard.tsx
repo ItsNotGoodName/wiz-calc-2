@@ -10,11 +10,12 @@ import { LabelNumber } from "./LabelNumber";
 import { OptionMenu } from "./OptionMenu";
 
 type SpellCardProps = {
-  initSpell: SpellType;
+  spell: SpellType;
+  index: number;
 };
 
-export const SpellCard: React.FC<SpellCardProps> = ({ initSpell }) => {
-  const [spell, dispatch] = useSpell(initSpell);
+export const SpellCard: React.FC<SpellCardProps> = ({ spell, index }) => {
+  const dispatch = useSpell(spell, index);
 
   return (
     <CardWrapper>
