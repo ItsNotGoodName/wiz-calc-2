@@ -13,7 +13,7 @@ const App: React.FC = () => {
   const spellCards = spells.map((value, index) => {
     return (
       <Flex key={value.id} mb="auto" pb="20px" w="206px" mr="20px">
-        <SpellCard index={index} />
+        <SpellCard spell={value} index={index} />
       </Flex>
     );
   });

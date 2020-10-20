@@ -2,6 +2,7 @@ import { Box, Flex, Input, Text } from "@chakra-ui/core";
 import React, { useContext } from "react";
 import { SpellsContext } from "../contexts/SpellsContext";
 import { useSpell } from "../hooks/UseSpell";
+import { SpellType } from "../types";
 import { CardFooter } from "./Card/CardFooter";
 import { CardHeader } from "./Card/CardHeader";
 import { CardItem } from "./Card/CardItem";
@@ -10,13 +11,12 @@ import { LabelNumber } from "./LabelNumber";
 import { OptionMenu } from "./OptionMenu";
 
 type SpellCardProps = {
+  spell: SpellType;
   index: number;
 };
 
-export const SpellCard: React.FC<SpellCardProps> = ({ index }) => {
-  const { spells } = useContext(SpellsContext);
-  const [, dispatch] = useSpell(spells[index]);
-  const spell = spells[index];
+export const SpellCard: React.FC<SpellCardProps> = ({ spell, index }) => {
+  const dispatch = useSpell(spell, index);
 
   return (
     <CardWrapper>

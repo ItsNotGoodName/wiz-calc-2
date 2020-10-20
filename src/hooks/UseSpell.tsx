@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
+import { CharacterContext } from "../contexts/CharacterContext";
+import {
+  SpellsContext,
+  SpellsContextProvider,
+} from "../contexts/SpellsContext";
 import { CharacterType, SpellType } from "../types";
-import { parseNum } from "../utils";
+import { calculateAllSpell, parseNum } from "../utils";
 
 export type SpellActions =
   | {
@@ -16,8 +21,8 @@ export type SpellActions =
       type: "add_base";
     }
   | {
-      type: "update_character";
-      value: CharacterType;
+      type: "calculate";
+      character: CharacterType;
     }
   | {
       type: "toggle_enchantment";
@@ -50,17 +55,13 @@ const spellReducer = (state: SpellType, action: SpellActions): SpellType => {
       return newState;
     }
     case "change_base": {
-      const newState = { ...state };
-      newState.bases[action.index] = parseNum(action.value);
-
-      // calculateSpell(newState, action.index);
-      return newState;
+      const bases = [...state.bases];
+      bases[action.index] = parseNum(action.value);
+      return { ...state, bases };
     }
-    case "update_character": {
+    case "calculate": {
       const newState = { ...state };
-      // newState.character = action.value;
-
-      // calculateAllSpell(newState);
+      calculateAllSpell(newState, action.character);
       return newState;
     }
     case "toggle_enchantment": {
@@ -71,14 +72,12 @@ const spellReducer = (state: SpellType, action: SpellActions): SpellType => {
         newState.enchantment = undefined;
       }
 
-      // calculateAllSpell(newState);
       return newState;
     }
     case "change_enchantment": {
       const newState = { ...state };
       newState.enchantment = parseNum(action.value);
 
-      // calculateAllSpell(newState);
       return newState;
     }
     case "toggle_increment": {
@@ -92,21 +91,20 @@ const spellReducer = (state: SpellType, action: SpellActions): SpellType => {
         newState.increment = undefined;
       }
 
-      // calculateAllSpell(newState);
       return newState;
     }
     case "change_increment": {
-      const newState = { ...state };
-      console.log(action);
+      if (state.increment === undefined) return state;
+
+      const increment = { ...state.increment };
       if (action.base !== undefined) {
-        newState.increment!.base = parseNum(action.base);
+        increment.base = parseNum(action.base);
       }
       if (action.pips !== undefined) {
-        newState.increment!.pips = parseNum(action.pips);
+        increment.pips = parseNum(action.pips);
       }
 
-      // calculateAllSpell(newState);
-      return newState;
+      return { ...state, increment };
     }
     case "delete_spell": {
       return state;
@@ -117,8 +115,20 @@ const spellReducer = (state: SpellType, action: SpellActions): SpellType => {
   }
 };
 
-export const useSpell = (spell: SpellType) => {
-  const hook = React.useReducer(spellReducer, spell);
+export const useSpell = (spell: SpellType, index: number) => {
+  const { dispatch: spellsDispatch } = useContext(SpellsContext);
+  const { character } = useContext(CharacterContext);
+  const [newSpell, dispatch] = React.useReducer(spellReducer, spell);
 
-  return hook;
+  // Update spell in the manager
+  useEffect(() => {
+    spellsDispatch({ type: "update_spell", index: index, spell: newSpell });
+  }, [newSpell, spellsDispatch, index]);
+
+  // Calculate spell
+  useEffect(() => {
+    dispatch({ type: "calculate", character });
+  }, [character, newSpell.bases, newSpell.enchantment, newSpell.increment]);
+
+  return dispatch;
 };

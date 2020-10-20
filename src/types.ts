@@ -17,4 +17,5 @@ export type SpellType = {
     base: number;
     pips: number;
   };
+  _delete?: boolean;
 };

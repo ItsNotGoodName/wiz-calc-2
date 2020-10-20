@@ -7,12 +7,12 @@ export type SpellsAction =
     }
   | {
       type: "delete_spell";
-      id: string;
+      index: number;
     }
   | {
       type: "update_spell";
-      index: number;
       spell: SpellType;
+      index: number;
     };
 export const spellsReducer = (
   state: SpellType[],
@@ -26,7 +26,7 @@ export const spellsReducer = (
       const newState = [];
 
       for (let i = 0; i < state.length; i++) {
-        if (state[i].id !== action.id) {
+        if (action.index !== i) {
           newState.push(state[i]);
         }
       }
