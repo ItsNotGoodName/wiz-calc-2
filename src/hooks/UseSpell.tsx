@@ -104,7 +104,7 @@ const spellReducer = (state: SpellType, action: SpellActions): SpellType => {
       return { ...state, increment };
     }
     case "delete_spell": {
-      return state;
+      return { ...state, _delete: true };
     }
     default: {
       throw new Error("Error");
@@ -120,7 +120,11 @@ export const useSpell = (spell: SpellType, index: number) => {
 
   // Update spell in the manager
   useEffect(() => {
-    spellsDispatch({ type: "update_spell", index: index, spell: newSpell });
+    if (newSpell._delete === true) {
+      spellsDispatch({ type: "delete_spell", index: index });
+    } else {
+      spellsDispatch({ type: "update_spell", index: index, spell: newSpell });
+    }
   }, [newSpell, spellsDispatch, index]);
 
   // Calculate spell
