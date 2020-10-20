@@ -1,9 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { CharacterContext } from "../contexts/CharacterContext";
-import {
-  SpellsContext,
-  SpellsContextProvider,
-} from "../contexts/SpellsContext";
+import { SpellsContext } from "../contexts/SpellsContext";
 import { CharacterType, SpellType } from "../types";
 import { calculateAllSpell, parseNum } from "../utils";
 
@@ -118,6 +115,7 @@ const spellReducer = (state: SpellType, action: SpellActions): SpellType => {
 export const useSpell = (spell: SpellType, index: number) => {
   const { dispatch: spellsDispatch } = useContext(SpellsContext);
   const { character } = useContext(CharacterContext);
+
   const [newSpell, dispatch] = React.useReducer(spellReducer, spell);
 
   // Update spell in the manager

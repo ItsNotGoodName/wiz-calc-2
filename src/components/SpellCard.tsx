@@ -1,6 +1,5 @@
 import { Box, Flex, Input, Text } from "@chakra-ui/core";
-import React, { useContext } from "react";
-import { SpellsContext } from "../contexts/SpellsContext";
+import React from "react";
 import { useSpell } from "../hooks/UseSpell";
 import { SpellType } from "../types";
 import { CardFooter } from "./Card/CardFooter";
