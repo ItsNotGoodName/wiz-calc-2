@@ -1,9 +1,8 @@
-import { BoxProps, Stack } from "@chakra-ui/core";
+import { Stack, StackProps } from "@chakra-ui/core";
 import React from "react";
 import { BORDER, BORDER_COLOR } from "../../constants";
-type CardItem = {} & BoxProps;
 
-export const CardItem: React.FC<CardItem> = ({ children, ...props }) => {
+export const CardItem: React.FC<StackProps> = ({ children, ...props }) => {
   return (
     <Stack
       spacing="5px"
