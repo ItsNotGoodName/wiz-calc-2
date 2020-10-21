@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/wiz-calc-2/precache-manifest.0349ce54cdd7d766498395ca5278351b.js"
+  "/wiz-calc-2/precache-manifest.f183dd9292e13c1a3a983c7ef1ea08eb.js"
 );
 
 self.addEventListener('message', (event) => {
