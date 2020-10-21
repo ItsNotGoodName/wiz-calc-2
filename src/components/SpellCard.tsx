@@ -28,7 +28,14 @@ export const SpellCard: React.FC<SpellCardProps> = ({ spell, index }) => {
               aria-label="edit"
               variant="ghost"
               fontSize="24px"
-              onClick={() => setEditmode(!editmode)}
+              title="Click for edit mode or Shift+Click to delete spell"
+              onClick={(event: React.MouseEvent<any, MouseEvent>) => {
+                if (event.shiftKey) {
+                  dispatch({ type: "delete_spell" });
+                } else {
+                  setEditmode(!editmode);
+                }
+              }}
               mr="5px"
               icon={AiOutlineEdit}
             />
@@ -54,6 +61,7 @@ export const SpellCard: React.FC<SpellCardProps> = ({ spell, index }) => {
             {editmode && (
               <CloseButton
                 aria-label="close"
+                title="Delete spell"
                 onClick={() => dispatch({ type: "delete_spell" })}
               />
             )}
@@ -65,18 +73,21 @@ export const SpellCard: React.FC<SpellCardProps> = ({ spell, index }) => {
           <Button
             onClick={() => dispatch({ type: "add_base" })}
             isActive={spell.enchantment !== undefined}
+            title="Add base to spell"
           >
             B
           </Button>
           <Button
             onClick={() => dispatch({ type: "toggle_enchantment" })}
             isActive={spell.enchantment !== undefined}
+            title="Toggle enchantment"
           >
             E
           </Button>
           <Button
             onClick={() => dispatch({ type: "toggle_increment" })}
             isActive={spell.increment !== undefined}
+            title="Toggle increment"
           >
             I
           </Button>
@@ -135,12 +146,14 @@ export const SpellCard: React.FC<SpellCardProps> = ({ spell, index }) => {
                 <CloseButton
                   mr="10px"
                   aria-label="close"
+                  title="Delete base"
                   onClick={() => dispatch({ type: "delete_base", index })}
                 />
               )}
               <Flex w="50%">
                 <LabelNumber
                   value={value}
+                  title="Base damage"
                   onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                     event.preventDefault();
                     dispatch({
