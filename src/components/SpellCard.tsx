@@ -27,6 +27,7 @@ export const SpellCard: React.FC<SpellCardProps> = ({ spell, index }) => {
             <IconButton
               aria-label="edit"
               variant="ghost"
+              isActive={editmode}
               fontSize="24px"
               title="Click for edit mode or Shift+Click to delete spell"
               onClick={(event: React.MouseEvent<any, MouseEvent>) => {
