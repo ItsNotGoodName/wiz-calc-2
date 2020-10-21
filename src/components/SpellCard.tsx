@@ -1,12 +1,13 @@
-import { Box, Button, Flex, Input, Text } from "@chakra-ui/core";
+import { Box, Button, Flex, IconButton, Input, Text } from "@chakra-ui/core";
 import React, { useState } from "react";
-import { AiFillCloseSquare, AiOutlineEdit } from "react-icons/ai";
+import { AiOutlineEdit } from "react-icons/ai";
 import { useSpell } from "../hooks/UseSpell";
 import { SpellType } from "../types";
 import { CardFooter } from "./Card/CardFooter";
 import { CardHeader } from "./Card/CardHeader";
 import { CardItem } from "./Card/CardItem";
 import { CardWrapper } from "./Card/CardWrapper";
+import { CloseButton } from "./CloseButton";
 import { LabelNumber } from "./LabelNumber";
 
 type SpellCardProps = {
@@ -22,6 +23,16 @@ export const SpellCard: React.FC<SpellCardProps> = ({ spell, index }) => {
     <CardWrapper>
       <CardHeader p="5px">
         <Flex>
+          <Flex>
+            <IconButton
+              aria-label="edit"
+              variant="ghost"
+              fontSize="24px"
+              onClick={() => setEditmode(!editmode)}
+              mr="5px"
+              icon={AiOutlineEdit}
+            />
+          </Flex>
           <Flex>
             <Input
               textAlign="center"
@@ -41,25 +52,36 @@ export const SpellCard: React.FC<SpellCardProps> = ({ spell, index }) => {
           </Flex>
           <Flex>
             {editmode && (
-              <Button
+              <CloseButton
+                aria-label="close"
                 onClick={() => dispatch({ type: "delete_spell" })}
-                variant="ghost"
-                px="0px"
-                mr="5px"
-              >
-                <AiFillCloseSquare color="red" aria-label="edit" size="24px" />
-              </Button>
+              />
             )}
-            <Button
-              onClick={() => setEditmode(!editmode)}
-              variant="ghost"
-              px="0px"
-            >
-              <AiOutlineEdit aria-label="edit" />
-            </Button>
           </Flex>
         </Flex>
       </CardHeader>
+      {editmode && (
+        <CardItem mt="5px" spacing="8px" isInline={true}>
+          <Button
+            onClick={() => dispatch({ type: "add_base" })}
+            isActive={spell.enchantment !== undefined}
+          >
+            B
+          </Button>
+          <Button
+            onClick={() => dispatch({ type: "toggle_enchantment" })}
+            isActive={spell.enchantment !== undefined}
+          >
+            E
+          </Button>
+          <Button
+            onClick={() => dispatch({ type: "toggle_increment" })}
+            isActive={spell.increment !== undefined}
+          >
+            I
+          </Button>
+        </CardItem>
+      )}
       {spell.enchantment !== undefined ? (
         <CardItem>
           <LabelNumber
@@ -109,7 +131,14 @@ export const SpellCard: React.FC<SpellCardProps> = ({ spell, index }) => {
         {spell.bases.map((value, index) => {
           return (
             <Flex key={index}>
-              <Box w="45%">
+              {editmode && (
+                <CloseButton
+                  mr="10px"
+                  aria-label="close"
+                  onClick={() => dispatch({ type: "delete_base", index })}
+                />
+              )}
+              <Flex w="50%">
                 <LabelNumber
                   value={value}
                   onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
@@ -121,8 +150,8 @@ export const SpellCard: React.FC<SpellCardProps> = ({ spell, index }) => {
                     });
                   }}
                 ></LabelNumber>
-              </Box>
-              <Flex ml="auto" w="50%">
+              </Flex>
+              <Flex ml="auto">
                 <Text
                   flexWrap="wrap"
                   wordBreak="break-word"
