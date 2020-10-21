@@ -1,14 +1,16 @@
-import React, { createContext, useEffect, useReducer } from "react";
+import React, { createContext, useEffect, useReducer, useState } from "react";
 import { SpellsAction, spellsReducer } from "../reducers/spellsReducer";
 import { SpellType } from "../types";
 
 export const SpellsContext = createContext<{
   spells: SpellType[];
   dispatch: React.Dispatch<SpellsAction>;
-}>({ spells: [], dispatch: () => null });
+  loading: boolean;
+}>({ loading: false, spells: [], dispatch: () => null });
 
 export const SpellsContextProvider: React.FC = ({ children }) => {
   const [spells, dispatch] = useReducer(spellsReducer, []);
+  const [loading, setLoading] = useState(true);
 
   // Load spells from storage
   useEffect(() => {
@@ -17,6 +19,7 @@ export const SpellsContextProvider: React.FC = ({ children }) => {
       const spells_parsed: SpellType[] = JSON.parse(spells_raw);
       dispatch({ type: "load", spells: spells_parsed });
     }
+    setLoading(false);
   }, []);
 
   // Save spells to storage
@@ -25,7 +28,7 @@ export const SpellsContextProvider: React.FC = ({ children }) => {
   }, [spells]);
 
   return (
-    <SpellsContext.Provider value={{ spells, dispatch }}>
+    <SpellsContext.Provider value={{ loading, spells, dispatch }}>
       {children}
     </SpellsContext.Provider>
   );
