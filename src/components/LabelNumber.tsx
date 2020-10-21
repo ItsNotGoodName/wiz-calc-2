@@ -5,7 +5,13 @@ export const LabelNumber: React.FC<InputProps> = ({ children, ...props }) => {
   return (
     <Box>
       <Text>{children}</Text>
-      <Input {...props} />
+      <Input
+        type="number"
+        onFocus={(event: React.FocusEvent<HTMLInputElement>) => {
+          event.target.select();
+        }}
+        {...props}
+      ></Input>
     </Box>
   );
 };

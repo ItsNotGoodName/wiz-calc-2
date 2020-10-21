@@ -110,7 +110,7 @@ export const SpellCard: React.FC<SpellCardProps> = ({ spell, index }) => {
           return (
             <Flex key={index}>
               <Box w="45%">
-                <Input
+                <LabelNumber
                   value={value}
                   onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                     event.preventDefault();
@@ -120,7 +120,7 @@ export const SpellCard: React.FC<SpellCardProps> = ({ spell, index }) => {
                       value: event.target.value,
                     });
                   }}
-                />
+                ></LabelNumber>
               </Box>
               <Flex ml="auto" w="50%">
                 <Text

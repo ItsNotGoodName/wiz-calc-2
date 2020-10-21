@@ -13,7 +13,7 @@ export const parseBuffs = (text: string) => {
 };
 
 export const parseNum = (num: string) => {
-  const value = parseInt(num);
+  const value = parseFloat(num);
   return value ? value : 0;
 };
 
