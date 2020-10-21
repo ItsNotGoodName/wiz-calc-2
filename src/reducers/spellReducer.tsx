@@ -78,33 +78,29 @@ export const spellReducer = (
       return newState;
     }
     case "toggle_enchantment": {
-      const newState = { ...state };
-      if (newState.enchantment === undefined) {
-        newState.enchantment = 0;
-      } else {
-        newState.enchantment = undefined;
-      }
-
-      return newState;
+      console.log(state.enchantment);
+      return {
+        ...state,
+        enchantment: state.enchantment === undefined ? 0 : undefined,
+      };
     }
     case "change_enchantment": {
-      const newState = { ...state };
-      newState.enchantment = parseNum(action.value);
-
-      return newState;
+      return {
+        ...state,
+        enchantment: parseNum(action.value),
+      };
     }
     case "toggle_increment": {
-      const newState = { ...state };
-      if (newState.increment === undefined) {
-        newState.increment = {
-          base: 0,
-          pips: 1,
-        };
-      } else {
-        newState.increment = undefined;
-      }
-
-      return newState;
+      return {
+        ...state,
+        increment:
+          state.increment === undefined
+            ? {
+                base: 0,
+                pips: 1,
+              }
+            : undefined,
+      };
     }
     case "change_increment": {
       if (state.increment === undefined) return state;
