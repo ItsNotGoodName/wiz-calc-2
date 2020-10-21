@@ -18,7 +18,7 @@ const App: React.FC = () => {
   });
 
   return (
-    <Box maxW="900px" pl="20px" mx="auto">
+    <Box minW="430px" maxW="900px" pl="20px" mx="auto">
       <CardWrapper py="10px" mr="20px" my="20px">
         <Heading color="gray.900" textAlign="center" size="xl">
           Wiz Calculator 2
@@ -32,7 +32,7 @@ const App: React.FC = () => {
         </Box>
         <Flex wrap="wrap">
           {spellCards}
-          <Flex pb="20px" w="216px" mr="10px">
+          <Flex minH="100px" pb="20px" w="216px" mr="10px">
             {spells.length < MAX_SPELLS ? (
               <IconButton
                 variantColor="blue"
