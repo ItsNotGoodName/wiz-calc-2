@@ -10,7 +10,7 @@ import { LabelNumber } from "./LabelNumber";
 type MainCardProps = {};
 
 export const MainCard: React.FC<MainCardProps> = () => {
-  const { character, dispatch } = useContext(CharacterContext);
+  const { loading, character, dispatch } = useContext(CharacterContext);
   return (
     <CardWrapper>
       <CardHeader>
@@ -20,6 +20,7 @@ export const MainCard: React.FC<MainCardProps> = () => {
       </CardHeader>
       <CardItem>
         <LabelNumber
+          isDisabled={loading}
           value={character.percentModifier}
           onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
             event.preventDefault();
@@ -29,6 +30,7 @@ export const MainCard: React.FC<MainCardProps> = () => {
           Percent Modifier
         </LabelNumber>
         <LabelNumber
+          isDisabled={loading}
           value={character.flatDamage}
           onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
             event.preventDefault();
@@ -45,6 +47,7 @@ export const MainCard: React.FC<MainCardProps> = () => {
       </CardItem>
       <CardFooter>
         <Textarea
+          isDisabled={loading}
           height="212px"
           resize="vertical"
           placeholder="[percent] [name]"
@@ -55,6 +58,7 @@ export const MainCard: React.FC<MainCardProps> = () => {
         />
         <Button
           onClick={() => dispatch({ type: "change_buffs", value: "" })}
+          isDisabled={loading}
           mx="auto"
           w="40%"
         >
