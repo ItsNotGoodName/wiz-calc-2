@@ -3,12 +3,5 @@ import React from "react";
 import { AiOutlineClose } from "react-icons/ai";
 
 export const CloseButton: React.FC<IconButtonProps> = ({ ...props }) => {
-  return (
-    <IconButton
-      {...props}
-      variantColor="red"
-      fontSize="24px"
-      icon={AiOutlineClose}
-    />
-  );
+  return <IconButton {...props} fontSize="24px" icon={AiOutlineClose} />;
 };

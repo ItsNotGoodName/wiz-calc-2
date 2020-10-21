@@ -60,6 +60,7 @@ export const SpellCard: React.FC<SpellCardProps> = ({ spell, index }) => {
           <Flex>
             {editmode && (
               <CloseButton
+                variantColor="red"
                 aria-label="close"
                 title="Delete spell"
                 onClick={() => dispatch({ type: "delete_spell" })}
@@ -144,6 +145,7 @@ export const SpellCard: React.FC<SpellCardProps> = ({ spell, index }) => {
             <Flex key={index}>
               {editmode && (
                 <CloseButton
+                  variant="ghost"
                   mr="10px"
                   aria-label="close"
                   title="Delete base"
