@@ -18,6 +18,10 @@ export type SpellActions =
       type: "add_base";
     }
   | {
+      type: "delete_base";
+      index: number;
+    }
+  | {
       type: "calculate";
       character: CharacterType;
     }
@@ -46,15 +50,27 @@ const spellReducer = (state: SpellType, action: SpellActions): SpellType => {
       return { ...state, name: action.name };
     }
     case "add_base": {
-      const newState = { ...state };
-      newState.bases.push(0);
-      newState.damages.push(0);
-      return newState;
+      const bases = [...state.bases];
+      const damages = [...state.damages];
+      bases.push(0);
+      damages.push(0);
+      return { ...state, bases, damages };
     }
     case "change_base": {
       const bases = [...state.bases];
       bases[action.index] = parseNum(action.value);
       return { ...state, bases };
+    }
+    case "delete_base": {
+      const bases = [];
+      const damages = [];
+      for (let i = 0; i < state.bases.length; i++) {
+        if (action.index !== i) {
+          bases.push(state.bases[i]);
+          damages.push(state.damages[i]);
+        }
+      }
+      return { ...state, bases, damages };
     }
     case "calculate": {
       const newState = { ...state };
