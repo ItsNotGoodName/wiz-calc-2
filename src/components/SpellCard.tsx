@@ -73,12 +73,14 @@ export const SpellCard: React.FC<SpellCardProps> = ({ spell, index }) => {
       {editmode && (
         <CardItem mt="5px" spacing="8px" isInline={true}>
           <Button
+            w="33%"
             onClick={() => dispatch({ type: "add_base" })}
             title="Add base to spell"
           >
             B
           </Button>
           <Button
+            w="33%"
             onClick={() => dispatch({ type: "toggle_enchantment" })}
             isActive={spell.enchantment !== undefined}
             title="Toggle enchantment"
@@ -86,6 +88,7 @@ export const SpellCard: React.FC<SpellCardProps> = ({ spell, index }) => {
             E
           </Button>
           <Button
+            w="33%"
             onClick={() => dispatch({ type: "toggle_increment" })}
             isActive={spell.increment !== undefined}
             title="Toggle increment"
