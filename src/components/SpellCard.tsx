@@ -74,7 +74,6 @@ export const SpellCard: React.FC<SpellCardProps> = ({ spell, index }) => {
         <CardItem mt="5px" spacing="8px" isInline={true}>
           <Button
             onClick={() => dispatch({ type: "add_base" })}
-            isActive={spell.enchantment !== undefined}
             title="Add base to spell"
           >
             B

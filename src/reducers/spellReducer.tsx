@@ -78,7 +78,6 @@ export const spellReducer = (
       return newState;
     }
     case "toggle_enchantment": {
-      console.log(state.enchantment);
       return {
         ...state,
         enchantment: state.enchantment === undefined ? 0 : undefined,
