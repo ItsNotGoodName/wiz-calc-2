@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "68d14f3a19371bfa33583cf8e8b343ac",
+    "revision": "9b4a50d4d6b06fc4a4c34c9a3dec4aa0",
     "url": "/wiz-calc-2/index.html"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/wiz-calc-2/static/js/2.8b1fc774.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "7773d0c7f5f27840d75c",
-    "url": "/wiz-calc-2/static/js/main.337718bb.chunk.js"
+    "revision": "802c650c877c59b0eec1",
+    "url": "/wiz-calc-2/static/js/main.6e45d228.chunk.js"
   },
   {
     "revision": "466391f28bc50f36e8c8",
