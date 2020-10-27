@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/wiz-calc-2/static/js/main.6e45d228.chunk.js",
-    "main.js.map": "/wiz-calc-2/static/js/main.6e45d228.chunk.js.map",
+    "main.js": "/wiz-calc-2/static/js/main.bb9a33e0.chunk.js",
+    "main.js.map": "/wiz-calc-2/static/js/main.bb9a33e0.chunk.js.map",
     "runtime-main.js": "/wiz-calc-2/static/js/runtime-main.283345f6.js",
     "runtime-main.js.map": "/wiz-calc-2/static/js/runtime-main.283345f6.js.map",
-    "static/js/2.8b1fc774.chunk.js": "/wiz-calc-2/static/js/2.8b1fc774.chunk.js",
-    "static/js/2.8b1fc774.chunk.js.map": "/wiz-calc-2/static/js/2.8b1fc774.chunk.js.map",
+    "static/js/2.d2089182.chunk.js": "/wiz-calc-2/static/js/2.d2089182.chunk.js",
+    "static/js/2.d2089182.chunk.js.map": "/wiz-calc-2/static/js/2.d2089182.chunk.js.map",
     "index.html": "/wiz-calc-2/index.html",
-    "precache-manifest.2acb36e410b9312bfe6245920d30044d.js": "/wiz-calc-2/precache-manifest.2acb36e410b9312bfe6245920d30044d.js",
+    "precache-manifest.7c4e13b0dc99201e7e96ffa4ede14dd0.js": "/wiz-calc-2/precache-manifest.7c4e13b0dc99201e7e96ffa4ede14dd0.js",
     "service-worker.js": "/wiz-calc-2/service-worker.js",
-    "static/js/2.8b1fc774.chunk.js.LICENSE.txt": "/wiz-calc-2/static/js/2.8b1fc774.chunk.js.LICENSE.txt"
+    "static/js/2.d2089182.chunk.js.LICENSE.txt": "/wiz-calc-2/static/js/2.d2089182.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.283345f6.js",
-    "static/js/2.8b1fc774.chunk.js",
-    "static/js/main.6e45d228.chunk.js"
+    "static/js/2.d2089182.chunk.js",
+    "static/js/main.bb9a33e0.chunk.js"
   ]
 }
