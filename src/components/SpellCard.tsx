@@ -1,4 +1,12 @@
-import { Box, Button, Flex, IconButton, Input, Text } from "@chakra-ui/core";
+import {
+  Box,
+  Button,
+  Checkbox,
+  Flex,
+  IconButton,
+  Input,
+  Text,
+} from "@chakra-ui/core";
 import React, { useState } from "react";
 import { AiOutlineEdit } from "react-icons/ai";
 import { useSpell } from "../hooks/UseSpell";
@@ -99,17 +107,31 @@ export const SpellCard: React.FC<SpellCardProps> = ({ spell, index }) => {
       )}
       {spell.enchantment !== undefined ? (
         <CardItem>
-          <LabelNumber
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-              dispatch({
-                type: "change_enchantment",
-                value: event.target.value,
-              });
-            }}
-            value={spell.enchantment}
-          >
-            Enchantment
-          </LabelNumber>
+          <Flex>
+            <LabelNumber
+              isDisabled={!spell.enchantment.enabled}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                dispatch({
+                  type: "change_enchantment",
+                  value: event.target.value,
+                });
+              }}
+              value={spell.enchantment.base}
+            >
+              <Flex mb="5px">
+                <Checkbox
+                  isChecked={spell.enchantment.enabled}
+                  title="Enable or disable enchantment in damage calculation"
+                  onChange={() =>
+                    dispatch({ type: "toggle_enchantment_calculation" })
+                  }
+                  mr="5px"
+                  size="lg"
+                />
+                <Text>Enchantment</Text>
+              </Flex>
+            </LabelNumber>
+          </Flex>
         </CardItem>
       ) : null}
       {spell.increment !== undefined ? (

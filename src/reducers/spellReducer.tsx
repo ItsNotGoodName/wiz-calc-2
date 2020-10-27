@@ -26,6 +26,9 @@ export type SpellActions =
       type: "toggle_enchantment";
     }
   | {
+      type: "toggle_enchantment_calculation";
+    }
+  | {
       type: "change_enchantment";
       value: string;
     }
@@ -80,13 +83,30 @@ export const spellReducer = (
     case "toggle_enchantment": {
       return {
         ...state,
-        enchantment: state.enchantment === undefined ? 0 : undefined,
+        enchantment:
+          state.enchantment === undefined
+            ? { base: 300, enabled: true }
+            : undefined,
+      };
+    }
+    case "toggle_enchantment_calculation": {
+      if (state.enchantment === undefined) return state;
+      return {
+        ...state,
+        enchantment: {
+          ...state.enchantment,
+          enabled: !state.enchantment.enabled,
+        },
       };
     }
     case "change_enchantment": {
+      if (state.enchantment === undefined) return state;
       return {
         ...state,
-        enchantment: parseNum(action.value),
+        enchantment: {
+          ...state.enchantment,
+          base: parseNum(action.value),
+        },
       };
     }
     case "toggle_increment": {

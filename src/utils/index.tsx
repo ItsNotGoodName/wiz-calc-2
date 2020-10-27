@@ -31,7 +31,10 @@ export const calculateSpell = (
   character: CharacterType,
   index: number
 ) => {
-  const enchantment = newState.enchantment ? newState.enchantment : 0;
+  const enchantment =
+    newState.enchantment && newState.enchantment.enabled
+      ? newState.enchantment.base
+      : 0;
   const increment = newState.increment
     ? newState.increment.base * newState.increment.pips
     : 0;
